@@ -126,18 +126,3 @@ curl http://localhost:3000/api/doadores
 curl "http://localhost:3000/api/doadores?nome=Ana"
 curl http://localhost:3000/api/beneficiarios
 ```
-
-## Observacoes
-
-- o banco fica salvo em `db/database.db`
-- a raiz `/` serve automaticamente a landing page
-- o projeto esta organizado para ser simples de estudar e evoluir
-
-## Sugestao de organizacao
-
-A estrutura atual esta boa para um projeto pequeno. O principal ajuste feito foi deixar o backend mais facil de entender:
-
-- inicializacao do banco centralizada
-- models com `async/await`
-- rotas mais curtas e diretas
-- README mais objetivo e atual
