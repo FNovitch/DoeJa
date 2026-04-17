@@ -113,7 +113,7 @@ Exemplo de corpo:
   "cpf": "000.000.000-00",
   "telefone": "21988888888",
   "endereco": "Rua Exemplo, 100",
-  "familia_tamanho": 4,
+  "familia_tamanho": 3,
   "necessidade": "Necessita de apoio com alimentos."
 }
 ```
