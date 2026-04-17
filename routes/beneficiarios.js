@@ -1,8 +1,10 @@
+// Rotas da API para gerenciar beneficiários
 const express = require("express");
 const beneficiarios = require("../models/beneficiarios");
 
 const router = express.Router();
 
+// GET: retorna lista de todos os beneficiários
 router.get("/", async (req, res) => {
   try {
     const lista = await beneficiarios.getAll();

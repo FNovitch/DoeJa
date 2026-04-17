@@ -1,9 +1,11 @@
+// Configuração e funções do banco de dados SQLite
 const path = require("path");
 const sqlite3 = require("sqlite3").verbose();
 
 const dbPath = path.join(__dirname, "database.db");
 const connection = new sqlite3.Database(dbPath);
 
+// Executa uma query de inserção, atualização ou exclusão
 function run(query, params = []) {
   return new Promise((resolve, reject) => {
     connection.run(query, params, function onRun(error) {
@@ -20,6 +22,7 @@ function run(query, params = []) {
   });
 }
 
+// Executa uma query de consulta e retorna todos os resultados
 function all(query, params = []) {
   return new Promise((resolve, reject) => {
     connection.all(query, params, (error, rows) => {
