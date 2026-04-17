@@ -1,7 +1,5 @@
-// Modelo para operações com a tabela 'doadores' no banco de dados
 const db = require("../db/database");
 
-// Retorna lista de doadores, com filtro opcional por nome
 async function getAll(nome = "") {
   const filtros = [];
   let query = "SELECT * FROM doadores";
@@ -14,7 +12,6 @@ async function getAll(nome = "") {
   return db.all(query, filtros);
 }
 
-// Cria um novo doador no banco de dados
 async function create(doador) {
   const { nome, email, telefone, cidade, observacoes } = doador;
 
