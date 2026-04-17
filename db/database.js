@@ -1,8 +1,55 @@
-// Configuração e inicialização do banco 
-const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
+const sqlite3 = require("sqlite3").verbose();
 
 const dbPath = path.join(__dirname, "database.db");
-const db = new sqlite3.Database(dbPath);
+const connection = new sqlite3.Database(dbPath);
 
-module.exports = db;
+function run(query, params = []) {
+  return new Promise((resolve, reject) => {
+    connection.run(query, params, function onRun(error) {
+      if (error) {
+        reject(error);
+        return;
+      }
+
+      resolve({
+        lastID: this.lastID,
+        changes: this.changes,
+      });
+    });
+  });
+}
+
+function all(query, params = []) {
+  return new Promise((resolve, reject) => {
+    connection.all(query, params, (error, rows) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+
+      resolve(rows);
+    });
+  });
+}
+
+function close() {
+  return new Promise((resolve, reject) => {
+    connection.close((error) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+
+      resolve();
+    });
+  });
+}
+
+module.exports = {
+  connection,
+  dbPath,
+  run,
+  all,
+  close,
+};

@@ -1,105 +1,143 @@
-# DoeJá - Gestão de Doações de Cestas Básicas
+# DoeJa
 
-Sistema completo para cadastro e gerenciamento de doadores e beneficiários de cestas básicas, com backend Node.js (Express + sqlite3) e front-end simples (HTML/CSS/JS).
+Landing page e sistema simples para conectar doadores a pessoas e familias em situacao de necessidade.
 
-## Funcionalidades
+## Visao geral
 
-- Cadastro e listagem de doadores e beneficiários
-- Busca de doadores por nome
-- Banco de dados local SQLite3
-- API RESTful
-- Front-end responsivo e acessível
+O projeto combina:
 
-## Estrutura de Pastas
+- landing page institucional em `HTML`, `CSS` e `JavaScript`
+- backend leve com `Node.js + Express`
+- banco local com `SQLite`
+- API para cadastrar e listar doadores e beneficiarios
 
-```
+## Stack
+
+- `Node.js`
+- `Express`
+- `SQLite3`
+- `HTML`
+- `CSS`
+- `JavaScript`
+
+## Estrutura
+
+```text
 DoeJa/
-├── db/
-│   ├── database.js         # Conexão com o banco sqlite3
-│   └── seed.js             # Popula o banco com dados de exemplo
-├── migrations/
-│   └── init.js             # Criação das tabelas
-├── models/
-│   ├── doadores.js         # Funções de acesso para doadores
-│   └── beneficiarios.js    # Funções de acesso para beneficiários
-├── routes/
-│   ├── doadores.js         # Rotas dos doadores
-│   └── beneficiarios.js    # Rotas dos beneficiários
-├── public/
-│   ├── index.html          # Página principal
-│   ├── style.css           # Estilos
-│   └── app.js              # JS do front-end
-├── package.json
-├── index.js                # Entry point do servidor
-└── README.md
+|-- db/
+|   |-- database.js
+|   |-- database.db
+|   `-- seed.js
+|-- migrations/
+|   `-- init.js
+|-- models/
+|   |-- beneficiarios.js
+|   `-- doadores.js
+|-- public/
+|   |-- app.js
+|   |-- index.html
+|   `-- style.css
+|-- routes/
+|   |-- beneficiarios.js
+|   `-- doadores.js
+|-- index.js
+|-- package.json
+`-- README.md
 ```
 
-## Instalação
+## O que cada pasta faz
 
-1. Clone o repositório e acesse a pasta:
-   ```sh
-   git clone <repo-url>
-   cd DoeJa
-   ```
-2. Instale as dependências:
-   ```sh
-   npm install
-   ```
+- `public/`: interface da landing page e scripts do front-end
+- `routes/`: endpoints da API
+- `models/`: acesso aos dados no banco
+- `db/`: conexao SQLite e seed de dados
+- `migrations/`: criacao das tabelas
 
-## Inicialização do Banco e Seed
+## Como rodar
 
-1. Execute as migrações e popule o banco com dados de exemplo:
-   ```sh
-   npm run seed
-   ```
+```bash
+npm install
+npm run seed
+npm run dev
+```
 
-## Execução em Desenvolvimento
+Depois acesse [http://localhost:3000](http://localhost:3000).
 
-1. Inicie o servidor com nodemon:
-   ```sh
-   npm run dev
-   ```
-2. Acesse o sistema em [http://localhost:3000](http://localhost:3000)
+## Scripts
 
-## Scripts disponíveis
+- `npm run dev`: sobe o projeto com `nodemon`
+- `npm start`: sobe o projeto normalmente
+- `npm run seed`: recria os dados de exemplo no banco
 
-- `npm run dev` — Executa o servidor com nodemon
-- `npm start` — Executa o servidor normalmente
-- `npm run seed` — Popula o banco com dados de exemplo
+## Fluxo do backend
 
-## Endpoints da API
+1. `index.js` inicializa o banco e sobe o servidor.
+2. As rotas em `routes/` recebem a requisicao.
+3. Os models em `models/` executam as consultas no SQLite.
+4. O front-end em `public/` consome a API.
 
-- `GET /api/doadores` — Lista todos os doadores (parâmetro opcional: `nome` para busca)
-- `POST /api/doadores` — Cria um doador (campos obrigatórios: nome, email)
-- `GET /api/beneficiarios` — Lista todos os beneficiários
-- `POST /api/beneficiarios` — Cria um beneficiário (campos obrigatórios: nome, cpf)
-- `GET /api/status` — Checagem de status
+## Endpoints
 
-## Exemplos de Testes Manuais (curl)
+### Status
 
-```sh
-# Listar doadores
+- `GET /api/status`
+
+### Doadores
+
+- `GET /api/doadores`
+- `GET /api/doadores?nome=ana`
+- `POST /api/doadores`
+
+Exemplo de corpo:
+
+```json
+{
+  "nome": "Maria",
+  "email": "maria@email.com",
+  "telefone": "21999999999",
+  "cidade": "Rio de Janeiro",
+  "observacoes": "Disponivel para ajudar aos finais de semana."
+}
+```
+
+### Beneficiarios
+
+- `GET /api/beneficiarios`
+- `POST /api/beneficiarios`
+
+Exemplo de corpo:
+
+```json
+{
+  "nome": "Joao",
+  "cpf": "000.000.000-00",
+  "telefone": "21988888888",
+  "endereco": "Rua Exemplo, 100",
+  "familia_tamanho": 4,
+  "necessidade": "Necessita de apoio com alimentos."
+}
+```
+
+## Testes manuais
+
+```bash
+curl http://localhost:3000/api/status
 curl http://localhost:3000/api/doadores
-
-# Buscar doador por nome
 curl "http://localhost:3000/api/doadores?nome=Ana"
-
-# Criar doador
-curl -X POST http://localhost:3000/api/doadores -H "Content-Type: application/json" -d '{"nome":"Novo Doador","email":"novo@email.com"}'
-
-# Listar beneficiários
 curl http://localhost:3000/api/beneficiarios
-
-# Criar beneficiário
-curl -X POST http://localhost:3000/api/beneficiarios -H "Content-Type: application/json" -d '{"nome":"Novo Benef","cpf":"000.000.000-00"}'
 ```
 
-## Observações
+## Observacoes
 
-- O banco de dados é salvo em `db/database.db`.
-- O front-end é servido automaticamente em `/`.
-- O código está comentado para facilitar manutenção e entendimento.
+- o banco fica salvo em `db/database.db`
+- a raiz `/` serve automaticamente a landing page
+- o projeto esta organizado para ser simples de estudar e evoluir
 
----
+## Sugestao de organizacao
 
-Projeto desenvolvido para fins didáticos — VaiNaWeb 2026.
+A estrutura atual esta boa para um projeto pequeno. O principal ajuste feito foi deixar o backend mais facil de entender:
+
+- inicializacao do banco centralizada
+- models com `async/await`
+- rotas mais curtas e diretas
+- README mais objetivo e atual

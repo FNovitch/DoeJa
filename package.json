@@ -1,14 +1,20 @@
 {
   "name": "doeja",
   "version": "1.0.0",
-  "description": "",
+  "description": "Plataforma para conectar doadores a pessoas e familias em situacao de necessidade.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
+    "start": "node index.js",
     "seed": "node db/seed.js"
   },
-  "keywords": [],
+  "keywords": [
+    "node",
+    "express",
+    "sqlite",
+    "doacao",
+    "landing-page"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
