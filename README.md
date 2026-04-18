@@ -1,3 +1,7 @@
+<p align="center">
+<img loading="lazy" src="http://img.shields.io/static/v1?label=STATUS&message=%20EM_ANDAMENTO&color=orange&style=for-the-badge"/>
+</p>
+
 # DoeJa
 
 Landing page e sistema simples para conectar doadores a pessoas e familias em situacao de necessidade.
@@ -10,6 +14,33 @@ O projeto combina:
 - backend leve com `Node.js + Express`
 - banco local com `SQLite`
 - API para cadastrar e listar doadores e beneficiarios
+
+## Ideia do projeto
+
+Criar uma plataforma simples para aproximar pessoas que desejam ajudar de pessoas e familias que precisam receber doacoes, deixando o processo mais visivel, organizado e acessivel.
+
+## Problema escolhido
+
+Muitas iniciativas solidarias enfrentam dificuldade para organizar informacoes de doadores e beneficiarios em um so lugar. Isso atrasa o contato, dificulta a triagem e reduz a eficiencia das doacoes.
+
+## Solucao proposta
+
+O DoeJa resolve esse problema com uma aplicacao leve que:
+
+- cadastra doadores
+- cadastra beneficiarios
+- lista os registros salvos
+- permite busca de doadores por nome
+- centraliza as informacoes em um banco local simples
+
+## Estrutura da solucao
+
+A solução foi dividida em quatro partes principais:
+
+- `landing page`: apresenta o projeto, gera interesse e direciona para a participacao
+- `front-end`: envia os dados dos formularios e exibe as listagens
+- `API`: recebe as requisicoes e organiza a comunicacao com o banco
+- `SQLite`: armazena os dados de doadores e beneficiarios
 
 ## Stack
 
@@ -47,11 +78,11 @@ DoeJa/
 
 ## O que cada pasta faz
 
-- `public/`: interface da landing page e scripts do front-end
-- `routes/`: endpoints da API
-- `models/`: acesso aos dados no banco
-- `db/`: conexao SQLite e seed de dados
-- `migrations/`: criacao das tabelas
+- `public/`: Interface da landing page e scripts do front-end
+- `routes/`: Endpoints da API
+- `models/`: Acesso aos dados no banco
+- `db/`: Conexao SQLite e seed de dados
+- `migrations/`: Criacao das tabelas
 
 ## Como rodar
 
