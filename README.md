@@ -1,5 +1,5 @@
 <p align="center">
-<img loading="lazy" src="http://img.shields.io/static/v1?label=STATUS&message=%20EM_ANDAMENTO&color=orange&style=for-the-badge"/>
+<img loading="lazy" src="http://img.shields.io/static/v1?label=STATUS&message=%20EM%20ANDAMENTO&color=orange&style=for-the-badge"/>
 </p>
 
 # DoeJa
