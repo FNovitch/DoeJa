@@ -1,32 +1,28 @@
-const criarBancoDeDados = require("../db/database");
+const db = require("../db/database");
 
-async function buscarTodosOsDoadores(nome = "") {
-  const bancoDeDados = await criarBancoDeDados();
-  let comandoSql = "SELECT * FROM doadores";
-  const parametrosDaBusca = [];
-
+// Retorna lista de doadores, com filtro opcional por nome
+async function getAll(nome = "") {
+  const filtros = [];
+  let query = "SELECT * FROM doadores";
   if (nome) {
-    comandoSql += " WHERE nome LIKE ?";
-    parametrosDaBusca.push(`%${nome}%`);
+    query += " WHERE nome LIKE ?";
+    filtros.push(`%${nome}%`);
   }
-
-  return bancoDeDados.buscarVariosRegistros(comandoSql, parametrosDaBusca);
+  return db.all(query, filtros);
 }
 
-async function criarNovoDoador(dadosDoDoador) {
-  const bancoDeDados = await criarBancoDeDados();
-  const { nome, email, telefone, cidade, observacoes } = dadosDoDoador;
-
-  const resultadoDaInsercao = await bancoDeDados.inserirAtualizarOuRemover(
+// Cria um novo doador no banco de dados
+async function create(doador) {
+  const { nome, email, telefone, cidade, observacoes } = doador;
+  const result = await db.run(
     `
       INSERT INTO doadores (nome, email, telefone, cidade, observacoes)
       VALUES (?, ?, ?, ?, ?)
     `,
     [nome, email, telefone, cidade, observacoes],
   );
-
   return {
-    id: resultadoDaInsercao.lastID,
+    id: result.lastID,
     nome,
     email,
     telefone,
@@ -36,6 +32,6 @@ async function criarNovoDoador(dadosDoDoador) {
 }
 
 module.exports = {
-  buscarTodosOsDoadores,
-  criarNovoDoador,
+  getAll,
+  create,
 };
