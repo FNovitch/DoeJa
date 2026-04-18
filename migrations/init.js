@@ -1,7 +1,9 @@
-const db = require("../db/database");
+const criarBancoDeDados = require("../db/database");
 
-async function initializeDatabase() {
-  await db.run(`
+async function inicializarBancoDeDados() {
+  const bancoDeDados = await criarBancoDeDados();
+
+  await bancoDeDados.executarComandoSql(`
     CREATE TABLE IF NOT EXISTS doadores (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT NOT NULL,
@@ -9,10 +11,8 @@ async function initializeDatabase() {
       telefone TEXT,
       cidade TEXT,
       observacoes TEXT
-    )
-  `);
+    );
 
-  await db.run(`
     CREATE TABLE IF NOT EXISTS beneficiarios (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT NOT NULL,
@@ -21,8 +21,8 @@ async function initializeDatabase() {
       endereco TEXT,
       familia_tamanho INTEGER,
       necessidade TEXT
-    )
+    );
   `);
 }
 
-module.exports = { initializeDatabase };
+module.exports = { inicializarBancoDeDados };

@@ -1,17 +1,21 @@
+// Rotas da API para gerenciar beneficiarios
 const express = require("express");
 const beneficiarios = require("../models/beneficiarios");
 
 const router = express.Router();
 
+// GET: retorna lista de todos os beneficiarios
 router.get("/", async (req, res) => {
   try {
-    const lista = await beneficiarios.getAll();
-    res.json(lista);
+    const listaDeBeneficiarios =
+      await beneficiarios.buscarTodosOsBeneficiarios();
+    res.json(listaDeBeneficiarios);
   } catch {
     res.status(500).json({ error: "Erro ao buscar beneficiarios." });
   }
 });
 
+// POST: cadastra um novo beneficiario
 router.post("/", async (req, res) => {
   const { nome, cpf, telefone, endereco, familia_tamanho, necessidade } =
     req.body;
@@ -21,7 +25,7 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    const novoBeneficiario = await beneficiarios.create({
+    const novoBeneficiario = await beneficiarios.criarNovoBeneficiario({
       nome,
       cpf,
       telefone,

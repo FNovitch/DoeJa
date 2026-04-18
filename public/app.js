@@ -41,13 +41,21 @@ function configurarFormularioDoador() {
       const data = await resposta.json();
 
       if (resposta.ok) {
-        mostrarFeedback("feedback-doador", "Doador cadastrado com sucesso!", true);
+        mostrarFeedback(
+          "feedback-doador",
+          "Doador cadastrado com sucesso!",
+          true,
+        );
         formulario.reset();
         carregarDoadores();
         return;
       }
 
-      mostrarFeedback("feedback-doador", data.error || "Erro ao cadastrar.", false);
+      mostrarFeedback(
+        "feedback-doador",
+        data.error || "Erro ao cadastrar.",
+        false,
+      );
     } catch {
       mostrarFeedback("feedback-doador", "Erro de conexão.", false);
     }

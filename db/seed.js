@@ -1,5 +1,5 @@
-const db = require("./database");
-const { initializeDatabase } = require("../migrations/init");
+const criarBancoDeDados = require("./database");
+const { inicializarBancoDeDados } = require("../migrations/init");
 
 const doadores = [
   {
@@ -159,15 +159,19 @@ const beneficiarios = [
   },
 ];
 
-async function seed() {
-  try {
-    await initializeDatabase();
+async function executarSeed() {
+  const bancoDeDados = await criarBancoDeDados();
 
-    await db.run("DELETE FROM doadores");
-    await db.run("DELETE FROM beneficiarios");
+  try {
+    await inicializarBancoDeDados();
+
+    await bancoDeDados.executarComandoSql(`
+      DELETE FROM doadores;
+      DELETE FROM beneficiarios;
+    `);
 
     for (const doador of doadores) {
-      await db.run(
+      await bancoDeDados.inserirAtualizarOuRemover(
         `
           INSERT INTO doadores (nome, email, telefone, cidade, observacoes)
           VALUES (?, ?, ?, ?, ?)
@@ -183,7 +187,7 @@ async function seed() {
     }
 
     for (const beneficiario of beneficiarios) {
-      await db.run(
+      await bancoDeDados.inserirAtualizarOuRemover(
         `
           INSERT INTO beneficiarios (
             nome,
@@ -211,8 +215,8 @@ async function seed() {
     console.error("Erro ao executar seed:", error.message);
     process.exitCode = 1;
   } finally {
-    await db.close();
+    await bancoDeDados.fecharConexao();
   }
 }
 
-seed();
+executarSeed();
