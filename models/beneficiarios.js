@@ -1,16 +1,14 @@
-const criarBancoDeDados = require("../db/database");
+const db = require("../db/database");
 
-async function buscarTodosOsBeneficiarios() {
-  const bancoDeDados = await criarBancoDeDados();
-  return bancoDeDados.buscarVariosRegistros("SELECT * FROM beneficiarios");
+async function getAll() {
+  return db.all("SELECT * FROM beneficiarios");
 }
 
-async function criarNovoBeneficiario(dadosDoBeneficiario) {
-  const bancoDeDados = await criarBancoDeDados();
+async function create(dadosDoBeneficiario) {
   const { nome, cpf, telefone, endereco, familia_tamanho, necessidade } =
     dadosDoBeneficiario;
 
-  const resultadoDaInsercao = await bancoDeDados.inserirAtualizarOuRemover(
+  const resultadoDaInsercao = await db.run(
     `
       INSERT INTO beneficiarios (
         nome,
@@ -36,7 +34,12 @@ async function criarNovoBeneficiario(dadosDoBeneficiario) {
   };
 }
 
+const buscarTodosOsBeneficiarios = getAll;
+const criarNovoBeneficiario = create;
+
 module.exports = {
+  getAll,
+  create,
   buscarTodosOsBeneficiarios,
   criarNovoBeneficiario,
 };

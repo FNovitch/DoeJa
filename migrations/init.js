@@ -1,9 +1,7 @@
-const criarBancoDeDados = require("../db/database");
+const db = require("../db/database");
 
-async function inicializarBancoDeDados() {
-  const bancoDeDados = await criarBancoDeDados();
-
-  await bancoDeDados.executarComandoSql(`
+async function initializeDatabase() {
+  await db.exec(`
     CREATE TABLE IF NOT EXISTS doadores (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT NOT NULL,
@@ -25,4 +23,9 @@ async function inicializarBancoDeDados() {
   `);
 }
 
-module.exports = { inicializarBancoDeDados };
+const inicializarBancoDeDados = initializeDatabase;
+
+module.exports = {
+  initializeDatabase,
+  inicializarBancoDeDados,
+};
