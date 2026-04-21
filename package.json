@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "seed": "node db/seed.js"
+    "seed": "node db/seed.js",
+    "postinstall": "npm rebuild sqlite3"
   },
   "keywords": [
     "node",
@@ -22,6 +23,9 @@
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "sqlite3": "^6.0.1"
+  },
+  "engines": {
+    "node": "18.x"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
