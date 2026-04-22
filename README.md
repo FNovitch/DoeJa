@@ -1,5 +1,5 @@
 <p align="center">
-<img loading="lazy" src="http://img.shields.io/static/v1?label=STATUS&message=%20EM%20ANDAMENTO&color=orange&style=for-the-badge"/>
+<img loading="lazy" src="http://img.shields.io/static/v1?label=STATUS&message=%20CONCLUIDO&color=GREEN&style=for-the-badge"/>
 </p>
 
 # DoeJa
@@ -157,3 +157,7 @@ curl http://localhost:3000/api/doadores
 curl "http://localhost:3000/api/doadores?nome=Ana"
 curl http://localhost:3000/api/beneficiarios
 ```
+
+## 🚀 Acesse o projeto
+
+👉 [https://doeja.onrender.com/]
