@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   configurarFormularioDoador();
   configurarFormularioBeneficiario();
   configurarBuscaDoador();
+  configurarBuscaBeneficiario();
   configurarMenuMobile();
   configurarFechamentoDoMenu();
 });
@@ -41,11 +42,7 @@ function configurarFormularioDoador() {
       const data = await resposta.json();
 
       if (resposta.ok) {
-        mostrarFeedback(
-          "feedback-doador",
-          "Doador cadastrado com sucesso!",
-          true,
-        );
+        mostrarFeedback("feedback-doador", "Doador cadastrado com sucesso!", true);
         formulario.reset();
         carregarDoadores();
         return;
@@ -126,6 +123,15 @@ function configurarBuscaDoador() {
   });
 }
 
+function configurarBuscaBeneficiario() {
+  const busca = document.getElementById("busca-beneficiario");
+  if (!busca) return;
+
+  busca.addEventListener("input", (event) => {
+    carregarBeneficiarios(event.target.value);
+  });
+}
+
 function configurarMenuMobile() {
   const toggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("menu");
@@ -171,6 +177,7 @@ function mostrarFeedback(id, mensagem, sucesso) {
 async function carregarDoadores(filtroNome = "") {
   const loading = document.getElementById("loading-doadores");
   const tabela = document.getElementById("tabela-doadores");
+  const contador = document.getElementById("contador-doadores");
   if (!loading || !tabela) return;
 
   tabela.style.display = "none";
@@ -186,24 +193,29 @@ async function carregarDoadores(filtroNome = "") {
     const resposta = await fetch(url);
     const doadores = await resposta.json();
     const tbody = tabela.querySelector("tbody");
+    const lista = Array.isArray(doadores) ? doadores : [];
 
     tbody.innerHTML = "";
+    atualizarContador(contador, lista.length);
 
-    if (!doadores.length) {
+    if (!lista.length) {
       tbody.innerHTML = `
-        <tr>
+        <tr class="empty-state">
           <td colspan="5">Nenhum doador encontrado no momento.</td>
         </tr>
       `;
     } else {
-      doadores.forEach((doador) => {
+      lista.forEach((doador) => {
         const linha = document.createElement("tr");
         linha.innerHTML = `
-          <td>${doador.nome}</td>
-          <td>${doador.email}</td>
-          <td>${doador.telefone || ""}</td>
-          <td>${doador.cidade || ""}</td>
-          <td>${doador.observacoes || ""}</td>
+          <td class="cell-primary" data-label="Nome">
+            <strong>${escapeHtml(doador.nome || "Sem nome")}</strong>
+            <span class="cell-subtitle">${textoOuVazio(doador.email)}</span>
+          </td>
+          <td class="cell-muted" data-label="Email">${textoOuVazio(doador.email)}</td>
+          <td class="cell-muted" data-label="Telefone">${formatarTelefone(doador.telefone)}</td>
+          <td class="cell-muted" data-label="Cidade">${textoOuVazio(doador.cidade)}</td>
+          <td class="cell-notes" data-label="Observações">${textoOuVazio(doador.observacoes)}</td>
         `;
         tbody.appendChild(linha);
       });
@@ -216,9 +228,10 @@ async function carregarDoadores(filtroNome = "") {
   }
 }
 
-async function carregarBeneficiarios() {
+async function carregarBeneficiarios(filtroNome = "") {
   const loading = document.getElementById("loading-beneficiarios");
   const tabela = document.getElementById("tabela-beneficiarios");
+  const contador = document.getElementById("contador-beneficiarios");
   if (!loading || !tabela) return;
 
   tabela.style.display = "none";
@@ -226,28 +239,38 @@ async function carregarBeneficiarios() {
   loading.textContent = "Carregando...";
 
   try {
-    const resposta = await fetch("/api/beneficiarios");
+    let url = "/api/beneficiarios";
+    if (filtroNome) {
+      url += `?nome=${encodeURIComponent(filtroNome)}`;
+    }
+
+    const resposta = await fetch(url);
     const beneficiarios = await resposta.json();
     const tbody = tabela.querySelector("tbody");
+    const lista = Array.isArray(beneficiarios) ? beneficiarios : [];
 
     tbody.innerHTML = "";
+    atualizarContador(contador, lista.length);
 
-    if (!beneficiarios.length) {
+    if (!lista.length) {
       tbody.innerHTML = `
-        <tr>
+        <tr class="empty-state">
           <td colspan="6">Nenhum beneficiário encontrado no momento.</td>
         </tr>
       `;
     } else {
-      beneficiarios.forEach((beneficiario) => {
+      lista.forEach((beneficiario) => {
         const linha = document.createElement("tr");
         linha.innerHTML = `
-          <td>${beneficiario.nome}</td>
-          <td>${beneficiario.cpf}</td>
-          <td>${beneficiario.telefone || ""}</td>
-          <td>${beneficiario.endereco || ""}</td>
-          <td>${beneficiario.familia_tamanho || ""}</td>
-          <td>${beneficiario.necessidade || ""}</td>
+          <td class="cell-primary" data-label="Nome">
+            <strong>${escapeHtml(beneficiario.nome || "Sem nome")}</strong>
+            <span class="cell-subtitle">${formatarCpf(beneficiario.cpf)}</span>
+          </td>
+          <td class="cell-muted" data-label="CPF">${formatarCpf(beneficiario.cpf)}</td>
+          <td class="cell-muted" data-label="Telefone">${formatarTelefone(beneficiario.telefone)}</td>
+          <td class="cell-muted" data-label="Endereço">${textoOuVazio(beneficiario.endereco)}</td>
+          <td data-label="Tam. família"><span class="cell-tag">${escapeHtml(beneficiario.familia_tamanho || "-")}</span></td>
+          <td class="cell-notes" data-label="Necessidade">${textoOuVazio(beneficiario.necessidade)}</td>
         `;
         tbody.appendChild(linha);
       });
@@ -258,4 +281,60 @@ async function carregarBeneficiarios() {
   } catch {
     loading.textContent = "Erro ao carregar beneficiários.";
   }
+}
+
+function atualizarContador(elemento, total) {
+  if (!elemento) return;
+
+  const sufixo = total === 1 ? "registro" : "registros";
+  elemento.textContent = `${total} ${sufixo}`;
+}
+
+function textoOuVazio(valor) {
+  if (!valor) {
+    return '<span class="cell-empty">Não informado</span>';
+  }
+
+  return escapeHtml(String(valor));
+}
+
+function formatarTelefone(valor) {
+  if (!valor) {
+    return '<span class="cell-empty">Não informado</span>';
+  }
+
+  const digitos = String(valor).replace(/\D/g, "");
+
+  if (digitos.length === 11) {
+    return `(${digitos.slice(0, 2)}) ${digitos.slice(2, 7)}-${digitos.slice(7)}`;
+  }
+
+  if (digitos.length === 10) {
+    return `(${digitos.slice(0, 2)}) ${digitos.slice(2, 6)}-${digitos.slice(6)}`;
+  }
+
+  return escapeHtml(String(valor));
+}
+
+function formatarCpf(valor) {
+  if (!valor) {
+    return '<span class="cell-empty">Não informado</span>';
+  }
+
+  const digitos = String(valor).replace(/\D/g, "");
+
+  if (digitos.length === 11) {
+    return `${digitos.slice(0, 3)}.${digitos.slice(3, 6)}.${digitos.slice(6, 9)}-${digitos.slice(9)}`;
+  }
+
+  return escapeHtml(String(valor));
+}
+
+function escapeHtml(valor) {
+  return String(valor)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }

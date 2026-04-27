@@ -80,7 +80,7 @@
                 Quem quer ajudar encontra quem precisa de forma mais clara.
               </h2>
               <div class="journey">
-                <div>
+                <div class="list-heading-group">
                   <strong>1.</strong>
                   <span
                     >Doadores se cadastram com disponibilidade e cidade.</span
@@ -370,16 +370,19 @@
           <section class="listas">
             <div class="list-card">
               <div class="list-header">
-                <div>
+                <div class="list-heading-group">
                   <h3>Doadores cadastrados</h3>
                   <p>Busque rapidamente por nome para localizar um contato.</p>
+                  <span class="list-count" id="contador-doadores">0 registros</span>
                 </div>
-                <input
-                  type="text"
-                  id="busca-doador"
-                  placeholder="Buscar por nome..."
-                  aria-label="Buscar doador"
-                />
+                <div class="list-actions">
+                  <input
+                    type="text"
+                    id="busca-doador"
+                    placeholder="Buscar por nome..."
+                    aria-label="Buscar doador"
+                  />
+                </div>
               </div>
               <div id="loading-doadores" class="loading">Carregando...</div>
               <div class="table-wrap">
@@ -407,6 +410,15 @@
                 <div>
                   <h3>Beneficiários cadastrados</h3>
                   <p>Visualize as demandas registradas na plataforma.</p>
+                  <span class="list-count" id="contador-beneficiarios">0 registros</span>
+                </div>
+                <div class="list-actions">
+                  <input
+                    type="text"
+                    id="busca-beneficiario"
+                    placeholder="Buscar por nome..."
+                    aria-label="Buscar beneficiário"
+                  />
                 </div>
               </div>
               <div id="loading-beneficiarios" class="loading">

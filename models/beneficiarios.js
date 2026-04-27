@@ -1,7 +1,15 @@
 const db = require("../db/database");
 
-async function getAll() {
-  return db.all("SELECT * FROM beneficiarios");
+async function getAll(nome = "") {
+  const filtros = [];
+  let query = "SELECT * FROM beneficiarios";
+
+  if (nome) {
+    query += " WHERE nome LIKE ?";
+    filtros.push(`%${nome}%`);
+  }
+
+  return db.all(query, filtros);
 }
 
 async function create(dadosDoBeneficiario) {

@@ -7,7 +7,7 @@ const router = express.Router();
 // GET: retorna lista de todos os beneficiários
 router.get("/", async (req, res) => {
   try {
-    const lista = await beneficiarios.getAll();
+    const lista = await beneficiarios.getAll(req.query.nome || "");
     res.json(lista);
   } catch {
     res.status(500).json({ error: "Erro ao buscar beneficiarios." });
