@@ -1,6 +1,6 @@
-const db = require("../db/database");
+import db from "../db/database";
 
-async function initializeDatabase() {
+export async function initializeDatabase(): Promise<void> {
   await db.exec(`
     CREATE TABLE IF NOT EXISTS doadores (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,9 +23,4 @@ async function initializeDatabase() {
   `);
 }
 
-const inicializarBancoDeDados = initializeDatabase;
-
-module.exports = {
-  initializeDatabase,
-  inicializarBancoDeDados,
-};
+export const inicializarBancoDeDados = initializeDatabase;

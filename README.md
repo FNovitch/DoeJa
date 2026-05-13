@@ -1,4 +1,4 @@
-﻿<p align="center">
+<p align="center">
   <img
     loading="lazy"
     src="https://img.shields.io/static/v1?label=STATUS&message=%20CONCLUIDO&color=GREEN&style=for-the-badge"
@@ -8,15 +8,15 @@
 <h1 align="center">DoeJa</h1>
 
 <p align="center">
-  Aplicacao web com landing page, API em Node.js e banco SQLite para conectar
-  doadores a pessoas e familias em situacao de necessidade.
+  Aplicacao web com landing page, API em Node.js, Express, TypeScript e banco
+  SQLite para conectar doadores a pessoas e familias em situacao de necessidade.
 </p>
 
 ## Sobre o projeto
 
 O **DoeJa** e um projeto de portifolio criado para praticar o desenvolvimento de
 uma aplicacao full stack simples, combinando front-end institucional, back-end
-com `Node.js + Express` e persistencia local com `SQLite`.
+com `Node.js + Express + TypeScript` e persistencia local com `SQLite`.
 
 A ideia central do projeto e facilitar a conexao entre pessoas que desejam ajudar
 com doacoes e pessoas ou familias que precisam receber apoio, reunindo essas
@@ -28,18 +28,20 @@ informacoes em uma plataforma unica e mais organizada.
 - Cadastro de doadores
 - Cadastro de beneficiarios
 - Listagem de registros salvos
-- Busca de doadores por nome
-- API local para consulta e criacao de dados
+- Busca de doadores e beneficiarios por nome
+- API para consulta e criacao de dados
 - Persistencia em banco `SQLite`
 
 ## Tecnologias utilizadas
 
 - `HTML5`
 - `CSS3`
-- `JavaScript`
+- `JavaScript` no front-end
+- `TypeScript`
 - `Node.js`
 - `Express`
 - `SQLite3`
+- `tsx`
 
 ## Estrutura do projeto
 
@@ -47,29 +49,36 @@ informacoes em uma plataforma unica e mais organizada.
 DoeJa/
 |- db/
 |  |- database.db
-|  |- database.js
-|  |- seed.js
-|- migrations/
-|  |- init.js
-|- models/
-|  |- beneficiarios.js
-|  |- doadores.js
+|- dist/
+|  |- arquivos compilados pelo TypeScript
 |- public/
 |  |- app.js
 |  |- index.html
 |  |- style.css
-|- routes/
-|  |- beneficiarios.js
-|  |- doadores.js
-|- index.js
+|- src/
+|  |- db/
+|  |  |- database.ts
+|  |  |- seed.ts
+|  |- migrations/
+|  |  |- init.ts
+|  |- models/
+|  |  |- beneficiarios.ts
+|  |  |- doadores.ts
+|  |- routes/
+|  |  |- beneficiarios.ts
+|  |  |- doadores.ts
+|  |- types/
+|  |  |- entities.ts
+|  |- index.ts
 |- package.json
+|- tsconfig.json
 |- README.md
 ```
 
-## Arquitetura atual
+## Arquitetura
 
-O projeto foi organizado em camadas simples para separar interface, regras de
-rota, acesso ao banco e persistencia.
+O projeto foi organizado em camadas simples para separar interface, rotas,
+tipos de dominio, acesso ao banco e inicializacao da persistencia.
 
 ### Front-end
 
@@ -79,11 +88,13 @@ rota, acesso ao banco e persistencia.
 
 ### Back-end
 
-- Servidor em `index.js`
-- Rotas da API em `routes/`
-- Models de acesso ao banco em `models/`
-- Banco local e seed em `db/`
-- Criacao de estrutura inicial em `migrations/`
+- Servidor Express em `src/index.ts`
+- Rotas da API em `src/routes/`
+- Models de acesso ao banco em `src/models/`
+- Tipos de doadores e beneficiarios em `src/types/`
+- Conexao SQLite em `src/db/database.ts`
+- Criacao da estrutura inicial em `src/migrations/init.ts`
+- Build compilado em `dist/`
 
 ## Como executar localmente
 
@@ -99,7 +110,7 @@ npm install
 npm run seed
 ```
 
-3. Inicie o servidor:
+3. Inicie o servidor em modo desenvolvimento:
 
 ```bash
 npm run dev
@@ -111,12 +122,28 @@ npm run dev
 http://localhost:3000
 ```
 
+## Build e producao
+
+Compile o projeto TypeScript:
+
+```bash
+npm run build
+```
+
+Inicie a API compilada:
+
+```bash
+npm start
+```
+
 ## Scripts disponiveis
 
 ```bash
 npm run dev
+npm run build
 npm start
 npm run seed
+npm run seed:prod
 ```
 
 ## Endpoints principais
@@ -134,26 +161,36 @@ npm run seed
 ### Beneficiarios
 
 - `GET /api/beneficiarios`
+- `GET /api/beneficiarios?nome=maria`
 - `POST /api/beneficiarios`
+
+## Deploy no Render
+
+A migracao para TypeScript mantem o deploy compativel com Render desde que o
+servico execute o build antes do start.
+
+Configuracao recomendada:
+
+```text
+Build Command: npm install && npm run build
+Start Command: npm start
+```
+
+O `npm start` executa `node dist/index.js`, entao o diretorio `dist/` precisa
+ser gerado durante o build. Os arquivos estaticos continuam em `public/` e o
+banco SQLite continua em `db/database.db`.
 
 ## Objetivos de aprendizado demonstrados
 
 - Estruturacao de API com `Express`
+- Migracao de back-end JavaScript para `TypeScript`
+- Tipagem de rotas, models e entidades de dominio
 - Persistencia de dados com `SQLite`
-- Separacao entre front-end, rotas e models
-- Integracao entre formulario e API
+- Separacao entre front-end, rotas, models, banco e migrations
 - Organizacao de projeto full stack para portifolio
-
-## Melhorias realizadas nesta versao
-
-- Reestruturacao do README para apresentacao mais profissional
-- Documentacao mais clara da arquitetura e do fluxo da aplicacao
-- Organizacao das funcionalidades em secoes objetivas
-- Melhor alinhamento com o restante do portfolio
 
 ## Deploy
 
 Deploy atual do projeto:
 
 [https://doeja.onrender.com/](https://doeja.onrender.com/)
-

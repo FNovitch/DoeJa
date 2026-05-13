@@ -1,7 +1,8 @@
-const criarBancoDeDados = require("./database");
-const { inicializarBancoDeDados } = require("../migrations/init");
+import db from "./database";
+import { inicializarBancoDeDados } from "../migrations/init";
+import type { CriarBeneficiarioDTO, CriarDoadorDTO } from "../types/entities";
 
-const doadores = [
+const doadores: CriarDoadorDTO[] = [
   {
     nome: "Ana Souza",
     email: "ana.souza@email.com",
@@ -60,7 +61,7 @@ const doadores = [
   },
 ];
 
-const beneficiarios = [
+const beneficiarios: CriarBeneficiarioDTO[] = [
   {
     nome: "Joao Oliveira",
     cpf: "123.456.789-00",
@@ -159,8 +160,8 @@ const beneficiarios = [
   },
 ];
 
-async function executarSeed() {
-  const bancoDeDados = await criarBancoDeDados();
+async function executarSeed(): Promise<void> {
+  const bancoDeDados = await db();
 
   try {
     await inicializarBancoDeDados();
@@ -179,9 +180,9 @@ async function executarSeed() {
         [
           doador.nome,
           doador.email,
-          doador.telefone,
-          doador.cidade,
-          doador.observacoes,
+          doador.telefone ?? null,
+          doador.cidade ?? null,
+          doador.observacoes ?? null,
         ],
       );
     }
@@ -202,21 +203,22 @@ async function executarSeed() {
         [
           beneficiario.nome,
           beneficiario.cpf,
-          beneficiario.telefone,
-          beneficiario.endereco,
-          beneficiario.familia_tamanho,
-          beneficiario.necessidade,
+          beneficiario.telefone ?? null,
+          beneficiario.endereco ?? null,
+          Number(beneficiario.familia_tamanho),
+          beneficiario.necessidade ?? null,
         ],
       );
     }
 
     console.log("Seed concluido com sucesso!");
   } catch (error) {
-    console.error("Erro ao executar seed:", error.message);
+    const mensagem = error instanceof Error ? error.message : String(error);
+    console.error("Erro ao executar seed:", mensagem);
     process.exitCode = 1;
   } finally {
     await bancoDeDados.fecharConexao();
   }
 }
 
-executarSeed();
+void executarSeed();

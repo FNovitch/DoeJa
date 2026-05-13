@@ -1,0 +1,16 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="doejaLogoTitle">
+  <title id="doejaLogoTitle">Logo DoeJa para fundo claro</title>
+  <rect x="5" y="5" width="150" height="150" rx="38" fill="#FFF7EF"/>
+  <rect x="5" y="5" width="150" height="150" rx="38" stroke="#F2D6BB" stroke-width="4"/>
+  <path d="M80 58V104" stroke="#D96F45" stroke-width="6.5" stroke-linecap="round"/>
+  <path d="M80 81L47 62" stroke="#D96F45" stroke-width="6.5" stroke-linecap="round"/>
+  <path d="M80 81L113 62" stroke="#D96F45" stroke-width="6.5" stroke-linecap="round"/>
+  <path d="M80 81L49 100" stroke="#D96F45" stroke-width="6.5" stroke-linecap="round"/>
+  <path d="M80 81L111 100" stroke="#D96F45" stroke-width="6.5" stroke-linecap="round"/>
+  <circle cx="80" cy="43" r="15.5" fill="#FFFDF9" stroke="#D96F45" stroke-width="6.5"/>
+  <circle cx="45" cy="62" r="15.5" fill="#FFFDF9" stroke="#D96F45" stroke-width="6.5"/>
+  <circle cx="115" cy="62" r="15.5" fill="#FFFDF9" stroke="#D96F45" stroke-width="6.5"/>
+  <circle cx="48" cy="101" r="15.5" fill="#FFFDF9" stroke="#D96F45" stroke-width="6.5"/>
+  <circle cx="112" cy="101" r="15.5" fill="#FFFDF9" stroke="#D96F45" stroke-width="6.5"/>
+  <circle cx="80" cy="122" r="15.5" fill="#FFFDF9" stroke="#D96F45" stroke-width="6.5"/>
+</svg>

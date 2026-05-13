@@ -1,19 +1,22 @@
-const db = require("../db/database");
+import db from "../db/database";
+import type { CriarDoadorDTO, Doador } from "../types/entities";
 
-// Retorna lista de doadores, com filtro opcional por nome
-async function getAll(nome = "") {
-  const filtros = [];
+export async function getAll(nome = ""): Promise<Doador[]> {
+  const filtros: string[] = [];
   let query = "SELECT * FROM doadores";
+
   if (nome) {
     query += " WHERE nome LIKE ?";
     filtros.push(`%${nome}%`);
   }
-  return db.all(query, filtros);
+
+  return db.all<Doador>(query, filtros);
 }
 
-// Cria um novo doador no banco de dados
-async function create(doador) {
-  const { nome, email, telefone, cidade, observacoes } = doador;
+export async function create(doador: CriarDoadorDTO): Promise<Doador> {
+  const { nome, email, telefone = null, cidade = null, observacoes = null } =
+    doador;
+
   const result = await db.run(
     `
       INSERT INTO doadores (nome, email, telefone, cidade, observacoes)
@@ -21,6 +24,7 @@ async function create(doador) {
     `,
     [nome, email, telefone, cidade, observacoes],
   );
+
   return {
     id: result.lastID,
     nome,
@@ -30,8 +34,3 @@ async function create(doador) {
     observacoes,
   };
 }
-
-module.exports = {
-  getAll,
-  create,
-};

@@ -2,11 +2,13 @@
   "name": "doeja",
   "version": "1.0.0",
   "description": "Plataforma para conectar doadores a pessoas e familias em situacao de necessidade.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js",
-    "seed": "node db/seed.js",
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "seed": "tsx src/db/seed.ts",
+    "seed:prod": "node dist/db/seed.js",
     "postinstall": "npm rebuild sqlite3 --build-from-source"
   },
   "keywords": [
@@ -28,7 +30,11 @@
     "node": "18.x"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^18.19.130",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
   },
   "repository": {
     "type": "git",
