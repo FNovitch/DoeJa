@@ -1,142 +1,103 @@
-<p align="center">
-  <img
-    loading="lazy"
-    src="https://img.shields.io/static/v1?label=STATUS&message=%20CONCLUIDO&color=GREEN&style=for-the-badge"
-  />
-</p>
+# DoeJa
 
-<h1 align="center">DoeJa</h1>
+![Status](https://img.shields.io/badge/status-concluido-16a34a?style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/TypeScript-6-3178c6?style=for-the-badge&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-18-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-5-111827?style=for-the-badge&logo=express&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-3-003b57?style=for-the-badge&logo=sqlite&logoColor=white)
 
-<p align="center">
-  Aplicacao web com landing page, API em Node.js, Express, TypeScript e banco
-  SQLite para conectar doadores a pessoas e familias em situacao de necessidade.
-</p>
+DoeJa e uma aplicacao web fullstack demonstrativa para conectar doadores a pessoas e familias em situacao de necessidade.
 
-## Sobre o projeto
+O projeto combina landing page, API em Node.js/Express, TypeScript e persistencia local com SQLite.
 
-O **DoeJa** e um projeto de portifolio criado para praticar o desenvolvimento de
-uma aplicacao full stack simples, combinando front-end institucional, back-end
-com `Node.js + Express + TypeScript` e persistencia local com `SQLite`.
+## Visao Geral
 
-A ideia central do projeto e facilitar a conexao entre pessoas que desejam ajudar
-com doacoes e pessoas ou familias que precisam receber apoio, reunindo essas
-informacoes em uma plataforma unica e mais organizada.
+- Landing page institucional para apresentar a proposta.
+- Cadastro de doadores.
+- Cadastro de beneficiarios.
+- Listagem e busca de registros.
+- API propria para consulta e criacao de dados.
+- Persistencia local em SQLite.
+
+## Tecnologias
+
+### Frontend
+
+- HTML5
+- CSS3
+- JavaScript
+
+### Backend
+
+- Node.js
+- Express
+- TypeScript
+- SQLite3
+- tsx
 
 ## Funcionalidades
 
-- Landing page institucional do projeto
-- Cadastro de doadores
-- Cadastro de beneficiarios
-- Listagem de registros salvos
-- Busca de doadores e beneficiarios por nome
-- API para consulta e criacao de dados
-- Persistencia em banco `SQLite`
+- Cadastro de doadores.
+- Cadastro de beneficiarios.
+- Busca por nome.
+- Listagem de registros salvos.
+- Endpoint de status da API.
+- Seed para popular dados iniciais.
+- Build TypeScript para producao.
 
-## Tecnologias utilizadas
+## Estrutura
 
-- `HTML5`
-- `CSS3`
-- `JavaScript` no front-end
-- `TypeScript`
-- `Node.js`
-- `Express`
-- `SQLite3`
-- `tsx`
-
-## Estrutura do projeto
-
-```text
-DoeJa/
-|- db/
-|  |- database.db
-|- dist/
-|  |- arquivos compilados pelo TypeScript
-|- public/
-|  |- app.js
-|  |- index.html
-|  |- style.css
-|- src/
-|  |- db/
-|  |  |- database.ts
-|  |  |- seed.ts
-|  |- migrations/
-|  |  |- init.ts
-|  |- models/
-|  |  |- beneficiarios.ts
-|  |  |- doadores.ts
-|  |- routes/
-|  |  |- beneficiarios.ts
-|  |  |- doadores.ts
-|  |- types/
-|  |  |- entities.ts
-|  |- index.ts
-|- package.json
-|- tsconfig.json
-|- README.md
+```bash
+.
+├── db
+├── public
+│   ├── app.js
+│   ├── index.html
+│   └── style.css
+├── src
+│   ├── db
+│   ├── migrations
+│   ├── models
+│   ├── routes
+│   ├── types
+│   └── index.ts
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
-## Arquitetura
+## Como Rodar
 
-O projeto foi organizado em camadas simples para separar interface, rotas,
-tipos de dominio, acesso ao banco e inicializacao da persistencia.
+### Pre-requisitos
 
-### Front-end
+- Node.js 18
+- npm
 
-- Landing page e formularios em `public/index.html`
-- Estilos centralizados em `public/style.css`
-- Interacao com a API feita por `public/app.js`
-
-### Back-end
-
-- Servidor Express em `src/index.ts`
-- Rotas da API em `src/routes/`
-- Models de acesso ao banco em `src/models/`
-- Tipos de doadores e beneficiarios em `src/types/`
-- Conexao SQLite em `src/db/database.ts`
-- Criacao da estrutura inicial em `src/migrations/init.ts`
-- Build compilado em `dist/`
-
-## Como executar localmente
-
-1. Instale as dependencias:
+### Instalacao
 
 ```bash
 npm install
 ```
 
-2. Gere os dados iniciais no banco:
+### Banco de dados
 
 ```bash
 npm run seed
 ```
 
-3. Inicie o servidor em modo desenvolvimento:
+### Desenvolvimento
 
 ```bash
 npm run dev
 ```
 
-4. Acesse no navegador:
+Acesse:
 
-```text
+```txt
 http://localhost:3000
 ```
 
-## Build e producao
-
-Compile o projeto TypeScript:
-
-```bash
-npm run build
-```
-
-Inicie a API compilada:
-
-```bash
-npm start
-```
-
-## Scripts disponiveis
+## Scripts
 
 ```bash
 npm run dev
@@ -146,51 +107,22 @@ npm run seed
 npm run seed:prod
 ```
 
-## Endpoints principais
+## API
 
-### Status
+Rotas principais:
 
 - `GET /api/status`
-
-### Doadores
-
 - `GET /api/doadores`
-- `GET /api/doadores?nome=ana`
 - `POST /api/doadores`
-
-### Beneficiarios
-
 - `GET /api/beneficiarios`
-- `GET /api/beneficiarios?nome=maria`
 - `POST /api/beneficiarios`
-
-## Deploy no Render
-
-A migracao para TypeScript mantem o deploy compativel com Render desde que o
-servico execute o build antes do start.
-
-Configuracao recomendada:
-
-```text
-Build Command: npm install && npm run build
-Start Command: npm start
-```
-
-O `npm start` executa `node dist/index.js`, entao o diretorio `dist/` precisa
-ser gerado durante o build. Os arquivos estaticos continuam em `public/` e o
-banco SQLite continua em `db/database.db`.
-
-## Objetivos de aprendizado demonstrados
-
-- Estruturacao de API com `Express`
-- Migracao de back-end JavaScript para `TypeScript`
-- Tipagem de rotas, models e entidades de dominio
-- Persistencia de dados com `SQLite`
-- Separacao entre front-end, rotas, models, banco e migrations
-- Organizacao de projeto full stack para portifolio
 
 ## Deploy
 
-Deploy atual do projeto:
+Deploy atual:
 
 [https://doeja.onrender.com/](https://doeja.onrender.com/)
+
+## Status
+
+Projeto concluido para portfólio, com foco em fundamentos de API, persistencia local, TypeScript e organizacao de uma aplicacao fullstack simples.
