@@ -6,7 +6,7 @@
     <title>DoeJa | Conectando doadores a quem precisa</title>
     <meta
       name="description"
-      content="DoeJa conecta pessoas que precisam de doação com doadores dispostos a ajudar de forma simples, humana e segura."
+      content="DoeJa organiza cadastros de doadores e beneficiários para apoiar conexões solidárias com privacidade e cuidado."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,23 +15,26 @@
       rel="stylesheet"
     />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-    <link rel="shortcut icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/tokens.css" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+    <link rel="stylesheet" href="styles/sections.css" />
+    <link rel="stylesheet" href="styles/responsive.css" />
   </head>
   <body>
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
     <div class="page-shell">
       <header class="topbar">
         <a class="brand" href="#inicio" aria-label="Página inicial DoeJa">
-          <span class="brand-mark">
-            <img
-              class="brand-logo"
-              src="assets/doeja-logo.svg"
-              width="44"
-              height="44"
-              alt="Logo DoeJa"
-            />
-          </span>
-          <span class="brand-text">DoeJa</span>
+          <img
+            class="brand-logo"
+            src="assets/doeja-logo.svg"
+            width="44"
+            height="44"
+            alt=""
+          />
+          <span>DoeJa</span>
         </a>
 
         <button
@@ -42,423 +45,452 @@
           aria-controls="menu"
           aria-label="Abrir menu"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
         </button>
 
         <nav class="nav" id="menu" aria-label="Navegação principal">
           <a href="#como-funciona">Como funciona</a>
           <a href="#impacto">Impacto</a>
-          <a href="#depoimentos">Depoimentos</a>
+          <a href="#privacidade">Privacidade</a>
           <a href="#faq">FAQ</a>
           <a href="#cadastro" class="nav-cta">Quero participar</a>
         </nav>
       </header>
 
-      <main id="inicio">
-        <section class="hero">
+      <main id="conteudo">
+        <section class="hero" id="inicio">
           <div class="hero-copy">
-            <span class="eyebrow">Rede solidária para quem precisa agora</span>
-            <h1>
-              Conectamos doadores a famílias e pessoas em situação de
-              necessidade.
-            </h1>
+            <span class="eyebrow"
+              >Rede solidária com cuidado e privacidade</span
+            >
+            <h1>A ajuda certa pode chegar mais perto.</h1>
             <p class="hero-text">
-              O DoeJa aproxima quem quer ajudar de quem precisa receber apoio
-              com mais agilidade, organização e cuidado humano.
+              O DoeJa organiza cadastros de quem quer ajudar e de quem precisa
+              de apoio em uma experiência simples e acolhedora.
             </p>
 
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#cadastro">Cadastrar agora</a>
-              <a class="btn btn-secondary" href="#como-funciona"
-                >Entender a proposta</a
+              <a class="button button-primary" href="#cadastro"
+                >Fazer cadastro</a
+              >
+              <a class="button button-secondary" href="#como-funciona"
+                >Conhecer a proposta</a
               >
             </div>
 
-            <ul class="hero-highlights" aria-label="Diferenciais do projeto">
-              <li>Cadastro rápido e acessível</li>
-              <li>Conexões mais humanas e organizadas</li>
-              <li>Foco em apoio local e impacto real</li>
+            <ul class="hero-highlights" aria-label="Compromissos do projeto">
+              <li>Cadastro direto e acessível</li>
+              <li>Cadastros sem listagem nesta página</li>
+              <li>Organização para iniciativas locais</li>
             </ul>
           </div>
 
-          <div class="hero-panel">
-            <div class="hero-card hero-card-main">
-              <p class="card-label">Fluxo do projeto</p>
-              <h2>
-                Quem quer ajudar encontra quem precisa de forma mais clara.
-              </h2>
-              <div class="journey">
-                <div class="list-heading-group">
-                  <strong>1.</strong>
-                  <span
-                    >Doadores se cadastram com disponibilidade e cidade.</span
-                  >
-                </div>
-                <div>
-                  <strong>2.</strong>
-                  <span
-                    >Beneficiários informam suas necessidades com
-                    contexto.</span
-                  >
-                </div>
-                <div>
-                  <strong>3.</strong>
-                  <span
-                    >A plataforma organiza os dados para facilitar
-                    conexões.</span
-                  >
-                </div>
-              </div>
-            </div>
+          <aside class="hero-panel" aria-labelledby="fluxo-titulo">
+            <p class="section-kicker">Como a rede começa</p>
+            <h2 id="fluxo-titulo">Um fluxo simples, com propósito claro.</h2>
+            <ol class="journey">
+              <li>
+                <span>1</span>
+                <p>Você escolhe como deseja participar da rede.</p>
+              </li>
+              <li>
+                <span>2</span>
+                <p>Seus dados são enviados para organização e triagem.</p>
+              </li>
+              <li>
+                <span>3</span>
+                <p>
+                  A equipe usa os cadastros para organizar os próximos passos.
+                </p>
+              </li>
+            </ol>
+          </aside>
+        </section>
 
-            <div class="hero-card hero-card-soft">
-              <p class="mini-stat-value">+120</p>
-              <p class="mini-stat-label">
-                Pessoas impactadas em iniciativas comunitárias
-              </p>
-            </div>
+        <section
+          class="impact-section"
+          id="impacto"
+          aria-labelledby="impacto-titulo"
+        >
+          <div class="section-heading">
+            <span class="eyebrow">Impacto da rede</span>
+            <h2 id="impacto-titulo">Uma experiência feita para aproximar.</h2>
+            <p>
+              O novo front prioriza clareza, acessibilidade e uma jornada mais
+              direta para cada tipo de participação.
+            </p>
+          </div>
+
+          <div class="impact-grid">
+            <article class="metric">
+              <strong>Quero doar</strong>
+              <span
+                >Um formulário objetivo para registrar disponibilidade.</span
+              >
+            </article>
+            <article class="metric">
+              <strong>Preciso de apoio</strong>
+              <span>Uma jornada clara para informar cada necessidade.</span>
+            </article>
           </div>
         </section>
 
         <section
-          class="impact-strip"
-          id="impacto"
-          aria-label="Indicadores do projeto"
+          class="content-section"
+          id="como-funciona"
+          aria-labelledby="como-titulo"
         >
-          <article>
-            <strong>Ajuda acessível</strong>
-            <span
-              >Uma experiência simples para aproximar doação e
-              necessidade.</span
-            >
-          </article>
-          <article>
-            <strong>Organização</strong>
-            <span
-              >Cadastros centralizados para facilitar triagem e
-              acompanhamento.</span
-            >
-          </article>
-          <article>
-            <strong>Confiança</strong>
-            <span
-              >Comunicação acolhedora e transparência na jornada
-              solidária.</span
-            >
-          </article>
-        </section>
-
-        <section class="section-grid" id="como-funciona">
           <div class="section-heading">
             <span class="eyebrow">Como funciona</span>
-            <h2>
-              Uma jornada pensada para tornar a solidariedade mais próxima.
-            </h2>
+            <h2 id="como-titulo">Cada cadastro tem uma finalidade definida.</h2>
           </div>
 
-          <div class="cards three-cols">
-            <article class="info-card">
-              <span class="step-tag">Passo 1</span>
-              <h3>Cadastro inteligente</h3>
+          <div class="process-grid">
+            <article>
+              <span class="step-number">01</span>
+              <h3>Escolha seu perfil</h3>
               <p>
-                Doadores e beneficiários informam dados essenciais de maneira
-                simples e rápida.
+                Cadastre-se como doador ou registre uma necessidade de apoio.
               </p>
             </article>
-            <article class="info-card">
-              <span class="step-tag">Passo 2</span>
-              <h3>Organização da demanda</h3>
-              <p>
-                As informações ficam centralizadas para facilitar visualização e
-                priorização.
-              </p>
+            <article>
+              <span class="step-number">02</span>
+              <h3>Informe somente o necessário</h3>
+              <p>Os campos ajudam a organizar o contato e a triagem da rede.</p>
             </article>
-            <article class="info-card">
-              <span class="step-tag">Passo 3</span>
-              <h3>Conexão com propósito</h3>
+            <article>
+              <span class="step-number">03</span>
+              <h3>Aguarde o encaminhamento</h3>
               <p>
-                A plataforma apoia uma ponte mais eficiente entre quem doa e
-                quem precisa.
+                Os dados ficam reservados e não são publicados na landing page.
               </p>
             </article>
           </div>
         </section>
 
-        <section class="split-section">
+        <section
+          class="privacy-section"
+          id="privacidade"
+          aria-labelledby="privacidade-titulo"
+        >
           <div class="section-heading">
-            <span class="eyebrow">Por que o DoeJa importa</span>
-            <h2>
-              Mais do que cadastrar pessoas, o projeto cria oportunidades de
-              cuidado.
-            </h2>
+            <span class="eyebrow eyebrow-on-dark"
+              >Privacidade desde o cadastro</span
+            >
+            <h2 id="privacidade-titulo">Seus dados não são uma vitrine.</h2>
             <p>
-              Quando a doação encontra a necessidade certa no momento certo, o
-              impacto deixa de ser abstrato e passa a transformar rotinas,
-              famílias e comunidades inteiras.
+              As informações fornecidas ajudam a organizar a participação na
+              rede. Esta página não apresenta uma listagem dos cadastros.
             </p>
           </div>
-
-          <div class="benefits-panel">
-            <article>
-              <h3>Para doadores</h3>
-              <p>Mais clareza sobre como ajudar e onde gerar impacto real.</p>
-            </article>
-            <article>
-              <h3>Para beneficiários</h3>
-              <p>
-                Mais visibilidade para necessidades urgentes e apoio mais
-                acessível.
-              </p>
-            </article>
-            <article>
-              <h3>Para comunidades</h3>
-              <p>Uma rede solidária mais conectada, organizada e responsiva.</p>
-            </article>
-          </div>
+          <ul class="privacy-points">
+            <li>
+              <strong>Finalidade:</strong> contato, triagem e encaminhamento.
+            </li>
+            <li>
+              <strong>Nesta página:</strong> não há listagem de cadastros.
+            </li>
+            <li>
+              <strong>Seus direitos:</strong> solicitar correção ou exclusão.
+            </li>
+          </ul>
         </section>
 
-        <section class="section-grid" id="depoimentos">
+        <section class="content-section" id="faq" aria-labelledby="faq-titulo">
           <div class="section-heading">
-            <span class="eyebrow">Depoimentos</span>
-            <h2>Histórias que mostram o valor de uma conexão bem feita.</h2>
-          </div>
-
-          <div class="cards testimonials">
-            <article class="testimonial-card">
-              <p>
-                "A proposta facilita muito a organização das doações e ajuda a
-                enxergar melhor onde a ajuda é mais urgente."
-              </p>
-              <strong>Mariana Souza</strong>
-              <span>Voluntária comunitária</span>
-            </article>
-            <article class="testimonial-card">
-              <p>
-                "Com uma visão mais clara dos cadastros, conseguimos agir com
-                mais rapidez e acolhimento."
-              </p>
-              <strong>Rafael Lima</strong>
-              <span>Organizador local</span>
-            </article>
-            <article class="testimonial-card">
-              <p>
-                "É o tipo de projeto que aproxima tecnologia e empatia de um
-                jeito que faz sentido."
-              </p>
-              <strong>Camila Fernandes</strong>
-              <span>Doadora recorrente</span>
-            </article>
-          </div>
-        </section>
-
-        <section class="cta-band">
-          <div>
-            <span class="eyebrow">Participe da rede</span>
-            <h2>
-              Seu cadastro pode ser o começo de uma ajuda que chega na hora
-              certa.
-            </h2>
-          </div>
-          <a class="btn btn-primary" href="#cadastro">Entrar para o projeto</a>
-        </section>
-
-        <section class="section-grid" id="faq">
-          <div class="section-heading">
-            <span class="eyebrow">FAQ</span>
-            <h2>Dúvidas comuns sobre a plataforma.</h2>
+            <span class="eyebrow">Perguntas frequentes</span>
+            <h2 id="faq-titulo">Antes de participar, tire suas dúvidas.</h2>
           </div>
 
           <div class="faq-list">
-            <details class="faq-item">
+            <details>
               <summary>Quem pode se cadastrar como doador?</summary>
               <p>
-                Qualquer pessoa disposta a contribuir pode se cadastrar e
-                informar como deseja ajudar.
+                Qualquer pessoa disposta a contribuir pode informar como deseja
+                ajudar.
               </p>
             </details>
-            <details class="faq-item">
-              <summary>Quem pode solicitar apoio como beneficiário?</summary>
+            <details>
+              <summary>Quem pode registrar uma necessidade?</summary>
               <p>
-                Pessoas ou famílias em situação de necessidade podem registrar
-                suas informações para receber apoio.
+                Pessoas ou famílias que precisam de apoio podem enviar seus
+                dados para triagem.
               </p>
             </details>
-            <details class="faq-item">
-              <summary>Que tipo de ajuda o projeto organiza?</summary>
+            <details>
+              <summary>Meus dados aparecem para outras pessoas?</summary>
               <p>
-                O foco principal é aproximar doadores e beneficiários,
-                facilitando a gestão de doações e necessidades.
+                Esta página não apresenta a listagem dos cadastros enviados.
               </p>
             </details>
-            <details class="faq-item">
-              <summary>O projeto funciona em celular?</summary>
+            <details>
+              <summary>Como posso corrigir ou excluir meu cadastro?</summary>
               <p>
-                Sim. A landing page foi estruturada para funcionar bem em
-                desktop, tablet e dispositivos móveis.
+                Use o
+                <a
+                  href="https://github.com/FNovitch/DoeJa/issues"
+                  rel="noreferrer"
+                  >canal de suporte do projeto</a
+                >
+                sem publicar seus dados pessoais na solicitação.
               </p>
             </details>
           </div>
         </section>
 
-        <section class="dashboard-section" id="cadastro">
-          <div class="section-heading section-heading-light">
+        <section
+          class="registration-section"
+          id="cadastro"
+          aria-labelledby="cadastro-titulo"
+        >
+          <div class="section-heading">
             <span class="eyebrow">Área de cadastro</span>
-            <h2>
-              Cadastre doadores e beneficiários para começar a organizar a rede.
-            </h2>
+            <h2 id="cadastro-titulo">Como você quer participar?</h2>
             <p>
-              Abaixo estão os formulários e a visualização dos registros
-              cadastrados na plataforma.
+              Preencha o formulário correspondente. Campos marcados com
+              <span aria-hidden="true">*</span> são obrigatórios.
             </p>
           </div>
 
-          <section class="forms">
-            <div class="form-container">
-              <h3>Cadastrar doador</h3>
-              <p class="section-copy">
-                Registre quem deseja contribuir com doações e apoio.
-              </p>
-              <form id="form-doador" autocomplete="off">
-                <label for="doador-nome">Nome*</label>
-                <input type="text" id="doador-nome" name="nome" required />
-
-                <label for="doador-email">Email*</label>
-                <input type="email" id="doador-email" name="email" required />
-
-                <label for="doador-telefone">Telefone</label>
-                <input type="text" id="doador-telefone" name="telefone" />
-
-                <label for="doador-cidade">Cidade</label>
-                <input type="text" id="doador-cidade" name="cidade" />
-
-                <label for="doador-observacoes">Observações</label>
-                <textarea id="doador-observacoes" name="observacoes"></textarea>
-
-                <button type="submit">Cadastrar doador</button>
-                <div class="feedback" id="feedback-doador"></div>
-              </form>
-            </div>
-
-            <div class="form-container">
-              <h3>Cadastrar beneficiário</h3>
-              <p class="section-copy">
-                Registre necessidades para facilitar o direcionamento das
-                doações.
-              </p>
-              <form id="form-beneficiario" autocomplete="off">
-                <label for="benef-nome">Nome*</label>
-                <input type="text" id="benef-nome" name="nome" required />
-
-                <label for="benef-cpf">CPF*</label>
-                <input type="text" id="benef-cpf" name="cpf" required />
-
-                <label for="benef-telefone">Telefone</label>
-                <input type="text" id="benef-telefone" name="telefone" />
-
-                <label for="benef-endereco">Endereço</label>
-                <input type="text" id="benef-endereco" name="endereco" />
-
-                <label for="benef-familia">Tamanho da família</label>
-                <input
-                  type="number"
-                  id="benef-familia"
-                  name="familia_tamanho"
-                  min="1"
-                />
-
-                <label for="benef-necessidade">Necessidade</label>
-                <textarea id="benef-necessidade" name="necessidade"></textarea>
-
-                <button type="submit">Cadastrar beneficiário</button>
-                <div class="feedback" id="feedback-beneficiario"></div>
-              </form>
-            </div>
-          </section>
-
-          <section class="listas">
-            <div class="list-card">
-              <div class="list-header">
-                <div class="list-heading-group">
-                  <h3>Doadores cadastrados</h3>
-                  <p>Busque rapidamente por nome para localizar um contato.</p>
-                  <span class="list-count" id="contador-doadores">0 registros</span>
-                </div>
-                <div class="list-actions">
+          <div class="forms-grid">
+            <article class="form-card">
+              <h3>Quero doar</h3>
+              <p>Informe como a rede pode entrar em contato com você.</p>
+              <form id="form-doador" novalidate>
+                <div class="field">
+                  <label for="doador-nome"
+                    >Nome <span aria-hidden="true">*</span></label
+                  >
                   <input
+                    id="doador-nome"
+                    name="nome"
                     type="text"
-                    id="busca-doador"
-                    placeholder="Buscar por nome..."
-                    aria-label="Buscar doador"
+                    autocomplete="name"
+                    maxlength="120"
+                    required
+                    aria-describedby="doador-nome-erro"
+                  />
+                  <span class="field-error" id="doador-nome-erro"></span>
+                </div>
+                <div class="field">
+                  <label for="doador-email"
+                    >E-mail <span aria-hidden="true">*</span></label
+                  >
+                  <input
+                    id="doador-email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    maxlength="160"
+                    required
+                    aria-describedby="doador-email-erro"
+                  />
+                  <span class="field-error" id="doador-email-erro"></span>
+                </div>
+                <div class="field">
+                  <label for="doador-telefone">Telefone</label>
+                  <input
+                    id="doador-telefone"
+                    name="telefone"
+                    type="tel"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    maxlength="16"
+                    aria-describedby="doador-telefone-erro"
+                  />
+                  <span class="field-error" id="doador-telefone-erro"></span>
+                </div>
+                <div class="field">
+                  <label for="doador-cidade">Cidade</label>
+                  <input
+                    id="doador-cidade"
+                    name="cidade"
+                    type="text"
+                    autocomplete="address-level2"
+                    maxlength="100"
                   />
                 </div>
-              </div>
-              <div id="loading-doadores" class="loading">Carregando...</div>
-              <div class="table-wrap">
-                <table
-                  id="tabela-doadores"
-                  aria-label="Lista de doadores"
-                  style="display: none"
-                >
-                  <thead>
-                    <tr>
-                      <th>Nome</th>
-                      <th>Email</th>
-                      <th>Telefone</th>
-                      <th>Cidade</th>
-                      <th>Observações</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
-              </div>
-            </div>
-
-            <div class="list-card">
-              <div class="list-header">
-                <div>
-                  <h3>Beneficiários cadastrados</h3>
-                  <p>Visualize as demandas registradas na plataforma.</p>
-                  <span class="list-count" id="contador-beneficiarios">0 registros</span>
+                <div class="field">
+                  <label for="doador-observacoes">Como deseja ajudar?</label>
+                  <textarea
+                    id="doador-observacoes"
+                    name="observacoes"
+                    maxlength="500"
+                  ></textarea>
                 </div>
-                <div class="list-actions">
+                <label class="consent" for="doador-consentimento">
                   <input
+                    id="doador-consentimento"
+                    name="consentimento"
+                    type="checkbox"
+                    required
+                    aria-describedby="doador-consentimento-erro"
+                  />
+                  <span
+                    >Li a seção de privacidade e autorizo o uso dos dados para
+                    contato e organização da rede.
+                    <span aria-hidden="true">*</span></span
+                  >
+                </label>
+                <span class="field-error" id="doador-consentimento-erro"></span>
+                <button
+                  class="submit-button"
+                  type="submit"
+                  data-idle-label="Cadastrar como doador"
+                  data-loading-label="Enviando…"
+                >
+                  Cadastrar como doador
+                </button>
+                <div
+                  class="form-feedback"
+                  id="feedback-doador"
+                  role="status"
+                  aria-live="polite"
+                  tabindex="-1"
+                ></div>
+              </form>
+            </article>
+
+            <article class="form-card">
+              <h3>Preciso de apoio</h3>
+              <p>Compartilhe somente o necessário para a triagem inicial.</p>
+              <form id="form-beneficiario" novalidate>
+                <div class="field">
+                  <label for="benef-nome"
+                    >Nome <span aria-hidden="true">*</span></label
+                  >
+                  <input
+                    id="benef-nome"
+                    name="nome"
                     type="text"
-                    id="busca-beneficiario"
-                    placeholder="Buscar por nome..."
-                    aria-label="Buscar beneficiário"
+                    autocomplete="name"
+                    maxlength="120"
+                    required
+                    aria-describedby="benef-nome-erro"
+                  />
+                  <span class="field-error" id="benef-nome-erro"></span>
+                </div>
+                <div class="field">
+                  <label for="benef-cpf"
+                    >CPF <span aria-hidden="true">*</span></label
+                  >
+                  <input
+                    id="benef-cpf"
+                    name="cpf"
+                    type="text"
+                    autocomplete="off"
+                    inputmode="numeric"
+                    maxlength="14"
+                    required
+                    aria-describedby="benef-cpf-ajuda benef-cpf-erro"
+                  />
+                  <small class="field-help" id="benef-cpf-ajuda"
+                    >Usado para evitar cadastros duplicados; não será exibido
+                    publicamente.</small
+                  >
+                  <span class="field-error" id="benef-cpf-erro"></span>
+                </div>
+                <div class="field">
+                  <label for="benef-telefone">Telefone</label>
+                  <input
+                    id="benef-telefone"
+                    name="telefone"
+                    type="tel"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    maxlength="16"
+                    aria-describedby="benef-telefone-erro"
+                  />
+                  <span class="field-error" id="benef-telefone-erro"></span>
+                </div>
+                <div class="field">
+                  <label for="benef-endereco">Endereço</label>
+                  <input
+                    id="benef-endereco"
+                    name="endereco"
+                    type="text"
+                    autocomplete="street-address"
+                    maxlength="180"
                   />
                 </div>
-              </div>
-              <div id="loading-beneficiarios" class="loading">
-                Carregando...
-              </div>
-              <div class="table-wrap">
-                <table
-                  id="tabela-beneficiarios"
-                  aria-label="Lista de beneficiários"
-                  style="display: none"
+                <div class="field">
+                  <label for="benef-familia">Tamanho da família</label>
+                  <input
+                    id="benef-familia"
+                    name="familia_tamanho"
+                    type="number"
+                    inputmode="numeric"
+                    min="1"
+                    max="30"
+                    aria-describedby="benef-familia-erro"
+                  />
+                  <span class="field-error" id="benef-familia-erro"></span>
+                </div>
+                <div class="field">
+                  <label for="benef-necessidade">Necessidade</label>
+                  <textarea
+                    id="benef-necessidade"
+                    name="necessidade"
+                    maxlength="500"
+                  ></textarea>
+                </div>
+                <label class="consent" for="benef-consentimento">
+                  <input
+                    id="benef-consentimento"
+                    name="consentimento"
+                    type="checkbox"
+                    required
+                    aria-describedby="benef-consentimento-erro"
+                  />
+                  <span
+                    >Li a seção de privacidade e autorizo o uso dos dados para
+                    triagem e organização da rede.
+                    <span aria-hidden="true">*</span></span
+                  >
+                </label>
+                <span class="field-error" id="benef-consentimento-erro"></span>
+                <button
+                  class="submit-button"
+                  type="submit"
+                  data-idle-label="Cadastrar pedido de apoio"
+                  data-loading-label="Enviando…"
                 >
-                  <thead>
-                    <tr>
-                      <th>Nome</th>
-                      <th>CPF</th>
-                      <th>Telefone</th>
-                      <th>Endereço</th>
-                      <th>Tam. família</th>
-                      <th>Necessidade</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
-              </div>
-            </div>
-          </section>
+                  Cadastrar pedido de apoio
+                </button>
+                <div
+                  class="form-feedback"
+                  id="feedback-beneficiario"
+                  role="status"
+                  aria-live="polite"
+                  tabindex="-1"
+                ></div>
+              </form>
+            </article>
+          </div>
         </section>
       </main>
+
+      <footer class="site-footer">
+        <a
+          class="brand footer-brand"
+          href="#inicio"
+          aria-label="Voltar ao início"
+        >
+          <img src="assets/doeja-logo.svg" width="36" height="36" alt="" />
+          <span>DoeJa</span>
+        </a>
+        <p>
+          Projeto demonstrativo. Para correção ou exclusão de cadastro, use o
+          <a href="https://github.com/FNovitch/DoeJa/issues" rel="noreferrer"
+            >canal de suporte</a
+          >
+          sem incluir dados pessoais na mensagem pública.
+        </p>
+      </footer>
     </div>
 
-    <script src="app.js"></script>
+    <script type="module" src="scripts/main.mjs"></script>
   </body>
 </html>

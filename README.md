@@ -2,7 +2,7 @@
 
 ![Status](https://img.shields.io/badge/status-concluido-16a34a?style=for-the-badge)
 ![TypeScript](https://img.shields.io/badge/TypeScript-6-3178c6?style=for-the-badge&logo=typescript&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-18-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-22-339933?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5-111827?style=for-the-badge&logo=express&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-3-003b57?style=for-the-badge&logo=sqlite&logoColor=white)
 
@@ -15,7 +15,7 @@ O projeto combina landing page, API em Node.js/Express, TypeScript e persistenci
 - Landing page institucional para apresentar a proposta.
 - Cadastro de doadores.
 - Cadastro de beneficiarios.
-- Listagem e busca de registros.
+- Landing page sem listagem de cadastros individuais.
 - API propria para consulta e criacao de dados.
 - Persistencia local em SQLite.
 
@@ -26,6 +26,7 @@ O projeto combina landing page, API em Node.js/Express, TypeScript e persistenci
 - HTML5
 - CSS3
 - JavaScript
+- ES Modules
 
 ### Backend
 
@@ -39,8 +40,8 @@ O projeto combina landing page, API em Node.js/Express, TypeScript e persistenci
 
 - Cadastro de doadores.
 - Cadastro de beneficiarios.
-- Busca por nome.
-- Listagem de registros salvos.
+- Validação acessível e feedback de envio nos formulários.
+- Consulta e listagem mantidas conforme a API original.
 - Endpoint de status da API.
 - Seed para popular dados iniciais.
 - Build TypeScript para producao.
@@ -51,9 +52,10 @@ O projeto combina landing page, API em Node.js/Express, TypeScript e persistenci
 .
 ├── db
 ├── public
-│   ├── app.js
+│   ├── assets
 │   ├── index.html
-│   └── style.css
+│   ├── scripts
+│   └── styles
 ├── src
 │   ├── db
 │   ├── migrations
@@ -70,7 +72,7 @@ O projeto combina landing page, API em Node.js/Express, TypeScript e persistenci
 
 ### Pre-requisitos
 
-- Node.js 18
+- Node.js 22
 - npm
 
 ### Instalacao
@@ -122,6 +124,15 @@ Rotas principais:
 Deploy atual:
 
 [https://doeja.onrender.com/](https://doeja.onrender.com/)
+
+O serviço atual usa a instância Free do Render, sem disco persistente. Nesse plano,
+o SQLite é armazenado em filesystem efêmero: reinícios e redeploys podem apagar os
+cadastros realizados depois do último backup. Essa limitação foi mantida por opção
+do responsável pelo projeto para evitar custos recorrentes.
+
+O `postinstall` compila o TypeScript e o arquivo `index.js` na raiz encaminha a
+inicialização para `dist/index.js`. Assim, os comandos atuais do Render —
+`npm install` e `node index.js` — continuam compatíveis sem alterar o backend.
 
 ## Status
 
