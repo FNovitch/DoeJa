@@ -12,18 +12,6 @@ function normalizarTamanhoFamilia(
   return Number.isFinite(numero) ? numero : null;
 }
 
-export async function getAll(nome = ""): Promise<Beneficiario[]> {
-  const filtros: string[] = [];
-  let query = "SELECT * FROM beneficiarios";
-
-  if (nome) {
-    query += " WHERE nome LIKE ?";
-    filtros.push(`%${nome}%`);
-  }
-
-  return db.all<Beneficiario>(query, filtros);
-}
-
 export async function create(
   dadosDoBeneficiario: CriarBeneficiarioDTO,
 ): Promise<Beneficiario> {
@@ -34,8 +22,10 @@ export async function create(
     endereco = null,
     familia_tamanho,
     necessidade = null,
+    consentimento,
   } = dadosDoBeneficiario;
   const tamanhoFamilia = normalizarTamanhoFamilia(familia_tamanho);
+  const consentidoEm = new Date().toISOString();
 
   const resultadoDaInsercao = await db.run(
     `
@@ -45,11 +35,22 @@ export async function create(
         telefone,
         endereco,
         familia_tamanho,
-        necessidade
+        necessidade,
+        consentimento,
+        consentido_em
       )
-      VALUES (?, ?, ?, ?, ?, ?)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `,
-    [nome, cpf, telefone, endereco, tamanhoFamilia, necessidade],
+    [
+      nome,
+      cpf,
+      telefone,
+      endereco,
+      tamanhoFamilia,
+      necessidade,
+      consentimento ? 1 : 0,
+      consentidoEm,
+    ],
   );
 
   return {
@@ -60,8 +61,7 @@ export async function create(
     endereco,
     familia_tamanho: tamanhoFamilia,
     necessidade,
+    consentimento,
+    consentido_em: consentidoEm,
   };
 }
-
-export const buscarTodosOsBeneficiarios = getAll;
-export const criarNovoBeneficiario = create;

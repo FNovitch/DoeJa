@@ -26,7 +26,9 @@ export interface DatabaseClient {
 }
 
 const sqlite = sqlite3.verbose();
-const dbPath = path.join(process.cwd(), "db", "database.db");
+const dbPath = process.env.DATABASE_PATH
+  ? path.resolve(process.env.DATABASE_PATH)
+  : path.join(process.cwd(), "db", "database.db");
 const connection = new sqlite.Database(dbPath);
 
 function run(query: string, params: SqlParameters = []): Promise<RunResult> {

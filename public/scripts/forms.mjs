@@ -54,7 +54,7 @@ function setFormState(form, feedback, state, message = "") {
   button.textContent = isLoading
     ? (button.dataset.loadingLabel ?? "Enviando…")
     : (button.dataset.idleLabel ?? "Enviar");
-  feedback.className = `form-feedback${state === "error" ? " is-error" : state === "success" ? " is-success" : ""}`;
+  feedback.dataset.state = state;
   feedback.textContent = message;
 }
 

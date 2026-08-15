@@ -2,7 +2,7 @@ import db from "./database";
 import { inicializarBancoDeDados } from "../migrations/init";
 import type { CriarBeneficiarioDTO, CriarDoadorDTO } from "../types/entities";
 
-const doadores: CriarDoadorDTO[] = [
+const doadores: Omit<CriarDoadorDTO, "consentimento">[] = [
   {
     nome: "Ana Souza",
     email: "ana.souza@email.com",
@@ -61,7 +61,7 @@ const doadores: CriarDoadorDTO[] = [
   },
 ];
 
-const beneficiarios: CriarBeneficiarioDTO[] = [
+const beneficiarios: Omit<CriarBeneficiarioDTO, "consentimento">[] = [
   {
     nome: "Joao Oliveira",
     cpf: "123.456.789-00",

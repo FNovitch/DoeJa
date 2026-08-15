@@ -1,25 +1,12 @@
 import { Router, type Request, type Response } from "express";
 import * as beneficiarios from "../models/beneficiarios";
-import type { CriarBeneficiarioDTO, NomeQuery } from "../types/entities";
+import type { CriarBeneficiarioDTO } from "../types/entities";
 
 const router = Router();
 
-router.get(
-  "/",
-  async (
-    req: Request<Record<string, never>, unknown, unknown, NomeQuery>,
-    res: Response,
-  ): Promise<void> => {
-    try {
-      const nome = req.query.nome ?? "";
-      const lista = await beneficiarios.getAll(nome);
-      res.json(lista);
-    } catch (error) {
-      console.error("Erro ao buscar beneficiarios:", error);
-      res.status(500).json({ error: "Erro ao buscar beneficiarios." });
-    }
-  },
-);
+router.get("/", (_req: Request, res: Response): void => {
+  res.status(405).json({ error: "Consulta pública não disponível." });
+});
 
 router.post(
   "/",
@@ -27,11 +14,23 @@ router.post(
     req: Request<Record<string, never>, unknown, CriarBeneficiarioDTO>,
     res: Response,
   ): Promise<void> => {
-    const { nome, cpf, telefone, endereco, familia_tamanho, necessidade } =
-      req.body;
+    const {
+      nome,
+      cpf,
+      telefone,
+      endereco,
+      familia_tamanho,
+      necessidade,
+      consentimento,
+    } = req.body;
 
     if (!nome || !cpf) {
       res.status(400).json({ error: "Nome e CPF sao obrigatorios." });
+      return;
+    }
+
+    if (consentimento !== true) {
+      res.status(400).json({ error: "O consentimento é obrigatório." });
       return;
     }
 
@@ -43,6 +42,7 @@ router.post(
         endereco,
         familia_tamanho,
         necessidade,
+        consentimento,
       });
 
       res.status(201).json(novoBeneficiario);

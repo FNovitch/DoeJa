@@ -23,7 +23,7 @@ export function clearFieldErrors(form) {
   form
     .querySelectorAll("[aria-invalid]")
     .forEach((field) => field.removeAttribute("aria-invalid"));
-  form.querySelectorAll(".field-error").forEach((error) => {
+  form.querySelectorAll("[data-field-error]").forEach((error) => {
     error.textContent = "";
   });
 }

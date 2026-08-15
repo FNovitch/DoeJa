@@ -8,27 +8,32 @@
       name="description"
       content="DoeJa organiza cadastros de doadores e beneficiários para apoiar conexões solidárias com privacidade e cuidado."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-    <link rel="stylesheet" href="styles/tokens.css" />
-    <link rel="stylesheet" href="styles/base.css" />
-    <link rel="stylesheet" href="styles/components.css" />
-    <link rel="stylesheet" href="styles/sections.css" />
-    <link rel="stylesheet" href="styles/responsive.css" />
+    <link rel="stylesheet" href="styles/app.css" />
   </head>
-  <body>
-    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <body
+    class="min-h-screen bg-canvas font-sans text-base text-ink antialiased data-[menu-open=true]:overflow-hidden md:data-[menu-open=true]:overflow-auto"
+    data-menu-open="false"
+  >
+    <a
+      class="fixed top-3 left-3 z-100 -translate-y-[200%] rounded-md bg-dark px-4 py-3 font-bold text-surface transition-transform focus:translate-y-0"
+      href="#conteudo"
+      >Ir para o conteúdo</a
+    >
 
-    <div class="page-shell">
-      <header class="topbar">
-        <a class="brand" href="#inicio" aria-label="Página inicial DoeJa">
+    <div
+      class="mx-auto w-[calc(100%-1.25rem)] max-w-296 pt-3 pb-8 md:w-[calc(100%-2rem)] md:pt-6"
+    >
+      <header
+        class="sticky top-2 z-20 flex min-h-19 items-center justify-between gap-6 rounded-xl border border-line/75 bg-canvas/90 px-4 py-3 shadow-soft backdrop-blur-xl md:top-4"
+      >
+        <a
+          class="inline-flex items-center gap-3 font-extrabold text-ink no-underline"
+          href="#inicio"
+          aria-label="Página inicial DoeJa"
+        >
           <img
-            class="brand-logo"
+            class="size-11 rounded-md"
             src="assets/doeja-logo.svg"
             width="44"
             height="44"
@@ -38,70 +43,156 @@
         </a>
 
         <button
-          class="menu-toggle"
+          class="group flex size-11 cursor-pointer flex-col items-center justify-center gap-[.3rem] rounded-full border border-line bg-surface p-0 text-ink md:hidden"
           id="menu-toggle"
           type="button"
           aria-expanded="false"
           aria-controls="menu"
           aria-label="Abrir menu"
         >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
+          <span
+            class="h-0.5 w-[1.15rem] rounded-full bg-current transition duration-200 group-aria-expanded:translate-y-[.43rem] group-aria-expanded:rotate-45 motion-reduce:transition-none"
+            aria-hidden="true"
+          ></span>
+          <span
+            class="h-0.5 w-[1.15rem] rounded-full bg-current transition duration-200 group-aria-expanded:opacity-0 motion-reduce:transition-none"
+            aria-hidden="true"
+          ></span>
+          <span
+            class="h-0.5 w-[1.15rem] rounded-full bg-current transition duration-200 group-aria-expanded:translate-y-[-0.43rem] group-aria-expanded:-rotate-45 motion-reduce:transition-none"
+            aria-hidden="true"
+          ></span>
         </button>
 
-        <nav class="nav" id="menu" aria-label="Navegação principal">
-          <a href="#como-funciona">Como funciona</a>
-          <a href="#impacto">Impacto</a>
-          <a href="#privacidade">Privacidade</a>
-          <a href="#faq">FAQ</a>
-          <a href="#cadastro" class="nav-cta">Quero participar</a>
+        <nav
+          class="absolute inset-x-0 top-[calc(100%+.5rem)] hidden flex-col items-stretch gap-1 rounded-lg border border-line bg-surface p-3 shadow-elevated data-[open=true]:flex md:static md:flex md:flex-row md:items-center md:border-0 md:bg-transparent md:p-0 md:shadow-none"
+          id="menu"
+          data-open="false"
+          aria-label="Navegação principal"
+        >
+          <a
+            class="min-h-11 rounded-full px-4 py-3 font-semibold text-ink-muted no-underline transition-colors hover:bg-surface hover:text-ink md:px-[.9rem] md:py-[.65rem]"
+            href="#como-funciona"
+            >Como funciona</a
+          >
+          <a
+            class="min-h-11 rounded-full px-4 py-3 font-semibold text-ink-muted no-underline transition-colors hover:bg-surface hover:text-ink md:px-[.9rem] md:py-[.65rem]"
+            href="#impacto"
+            >Impacto</a
+          >
+          <a
+            class="min-h-11 rounded-full px-4 py-3 font-semibold text-ink-muted no-underline transition-colors hover:bg-surface hover:text-ink md:px-[.9rem] md:py-[.65rem]"
+            href="#privacidade"
+            >Privacidade</a
+          >
+          <a
+            class="min-h-11 rounded-full px-4 py-3 font-semibold text-ink-muted no-underline transition-colors hover:bg-surface hover:text-ink md:px-[.9rem] md:py-[.65rem]"
+            href="#faq"
+            >FAQ</a
+          >
+          <a
+            class="min-h-11 rounded-full bg-brand px-4 py-3 text-center font-semibold text-surface no-underline transition-colors hover:bg-brand-hover md:px-[.9rem] md:py-[.65rem]"
+            href="#cadastro"
+            >Quero participar</a
+          >
         </nav>
       </header>
 
-      <main id="conteudo">
-        <section class="hero" id="inicio">
-          <div class="hero-copy">
-            <span class="eyebrow"
+      <main class="mt-8 grid gap-8 md:gap-12" id="conteudo">
+        <section
+          class="grid items-center gap-8 rounded-xl bg-surface bg-[radial-gradient(circle_at_88%_12%,rgb(168_66_32/0.13),transparent_28%)] px-4 py-8 shadow-soft sm:px-8 sm:py-12 lg:min-h-152 lg:grid-cols-[minmax(0,1.15fr)_minmax(18rem,.85fr)] lg:px-16 lg:py-20"
+          id="inicio"
+        >
+          <div>
+            <span
+              class="text-sm font-extrabold tracking-[.08em] text-brand uppercase"
               >Rede solidária com cuidado e privacidade</span
             >
-            <h1>A ajuda certa pode chegar mais perto.</h1>
-            <p class="hero-text">
+            <h1
+              class="my-4 mb-6 max-w-[13ch] text-display font-extrabold tracking-[-.055em] lg:max-w-[10ch]"
+            >
+              A ajuda certa pode chegar mais perto.
+            </h1>
+            <p class="max-w-156 text-lg text-ink-muted">
               O DoeJa organiza cadastros de quem quer ajudar e de quem precisa
               de apoio em uma experiência simples e acolhedora.
             </p>
 
-            <div class="hero-actions">
-              <a class="button button-primary" href="#cadastro"
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a
+                class="inline-flex min-h-13 w-full items-center justify-center rounded-full border border-transparent bg-brand px-[1.35rem] py-3 text-center font-extrabold text-surface no-underline transition hover:-translate-y-0.5 hover:bg-brand-hover motion-reduce:transform-none sm:w-auto"
+                href="#cadastro"
                 >Fazer cadastro</a
               >
-              <a class="button button-secondary" href="#como-funciona"
+              <a
+                class="inline-flex min-h-13 w-full items-center justify-center rounded-full border border-line bg-surface px-[1.35rem] py-3 text-center font-extrabold text-ink no-underline transition hover:-translate-y-0.5 hover:border-ink-muted motion-reduce:transform-none sm:w-auto"
+                href="#como-funciona"
                 >Conhecer a proposta</a
               >
             </div>
 
-            <ul class="hero-highlights" aria-label="Compromissos do projeto">
-              <li>Cadastro direto e acessível</li>
-              <li>Cadastros sem listagem nesta página</li>
-              <li>Organização para iniciativas locais</li>
+            <ul
+              class="mt-8 grid list-none gap-2 p-0 text-ink-muted"
+              aria-label="Compromissos do projeto"
+            >
+              <li class="flex gap-3">
+                <span class="font-extrabold text-success" aria-hidden="true"
+                  >✓</span
+                >Cadastro direto e acessível
+              </li>
+              <li class="flex gap-3">
+                <span class="font-extrabold text-success" aria-hidden="true"
+                  >✓</span
+                >Cadastros sem listagem nesta página
+              </li>
+              <li class="flex gap-3">
+                <span class="font-extrabold text-success" aria-hidden="true"
+                  >✓</span
+                >Organização para iniciativas locais
+              </li>
             </ul>
           </div>
 
-          <aside class="hero-panel" aria-labelledby="fluxo-titulo">
-            <p class="section-kicker">Como a rede começa</p>
-            <h2 id="fluxo-titulo">Um fluxo simples, com propósito claro.</h2>
-            <ol class="journey">
-              <li>
-                <span>1</span>
-                <p>Você escolhe como deseja participar da rede.</p>
+          <aside
+            class="border-l-4 border-brand bg-surface-muted p-6 sm:p-8 lg:p-10"
+            aria-labelledby="fluxo-titulo"
+          >
+            <p
+              class="text-sm font-extrabold tracking-[.08em] text-brand uppercase"
+            >
+              Como a rede começa
+            </p>
+            <h2
+              class="mt-3 mb-8 text-panel font-extrabold tracking-[-.035em]"
+              id="fluxo-titulo"
+            >
+              Um fluxo simples, com propósito claro.
+            </h2>
+            <ol class="grid list-none gap-6 p-0">
+              <li class="grid grid-cols-[2.25rem_1fr] items-start gap-3">
+                <span
+                  class="grid size-9 place-items-center rounded-full bg-surface font-extrabold text-brand"
+                  >1</span
+                >
+                <p class="mt-1 text-ink-muted">
+                  Você escolhe como deseja participar da rede.
+                </p>
               </li>
-              <li>
-                <span>2</span>
-                <p>Seus dados são enviados para organização e triagem.</p>
+              <li class="grid grid-cols-[2.25rem_1fr] items-start gap-3">
+                <span
+                  class="grid size-9 place-items-center rounded-full bg-surface font-extrabold text-brand"
+                  >2</span
+                >
+                <p class="mt-1 text-ink-muted">
+                  Seus dados são enviados para organização e triagem.
+                </p>
               </li>
-              <li>
-                <span>3</span>
-                <p>
+              <li class="grid grid-cols-[2.25rem_1fr] items-start gap-3">
+                <span
+                  class="grid size-9 place-items-center rounded-full bg-surface font-extrabold text-brand"
+                  >3</span
+                >
+                <p class="mt-1 text-ink-muted">
                   A equipe usa os cadastros para organizar os próximos passos.
                 </p>
               </li>
@@ -110,60 +201,92 @@
         </section>
 
         <section
-          class="impact-section"
+          class="grid items-center gap-8 border-y border-line px-4 py-8 sm:px-8 sm:py-12 lg:grid-cols-[minmax(0,.8fr)_minmax(20rem,1.2fr)] lg:gap-12 lg:px-16 lg:py-16"
           id="impacto"
           aria-labelledby="impacto-titulo"
         >
-          <div class="section-heading">
-            <span class="eyebrow">Impacto da rede</span>
-            <h2 id="impacto-titulo">Uma experiência feita para aproximar.</h2>
-            <p>
+          <div class="max-w-184">
+            <span
+              class="text-sm font-extrabold tracking-[.08em] text-brand uppercase"
+              >Impacto da rede</span
+            >
+            <h2
+              class="mt-3 mb-4 text-section font-extrabold tracking-[-.035em]"
+              id="impacto-titulo"
+            >
+              Uma experiência feita para aproximar.
+            </h2>
+            <p class="text-lg text-ink-muted">
               O novo front prioriza clareza, acessibilidade e uma jornada mais
               direta para cada tipo de participação.
             </p>
           </div>
 
-          <div class="impact-grid">
-            <article class="metric">
-              <strong>Quero doar</strong>
-              <span
+          <div class="grid gap-4 sm:grid-cols-2" data-journeys>
+            <article
+              class="rounded-lg border border-line bg-surface p-6 transition-transform hover:-translate-y-1 motion-reduce:transform-none sm:p-8"
+            >
+              <strong class="mb-3 block text-2xl text-brand">Quero doar</strong>
+              <span class="text-ink-muted"
                 >Um formulário objetivo para registrar disponibilidade.</span
               >
             </article>
-            <article class="metric">
-              <strong>Preciso de apoio</strong>
-              <span>Uma jornada clara para informar cada necessidade.</span>
+            <article
+              class="rounded-lg border border-line bg-surface p-6 transition-transform hover:-translate-y-1 motion-reduce:transform-none sm:p-8"
+            >
+              <strong class="mb-3 block text-2xl text-brand"
+                >Preciso de apoio</strong
+              >
+              <span class="text-ink-muted"
+                >Uma jornada clara para informar cada necessidade.</span
+              >
             </article>
           </div>
         </section>
 
         <section
-          class="content-section"
+          class="grid gap-8 px-4 py-8 sm:px-8 sm:py-12 lg:gap-12 lg:px-16 lg:py-16"
           id="como-funciona"
           aria-labelledby="como-titulo"
         >
-          <div class="section-heading">
-            <span class="eyebrow">Como funciona</span>
-            <h2 id="como-titulo">Cada cadastro tem uma finalidade definida.</h2>
+          <div class="max-w-184">
+            <span
+              class="text-sm font-extrabold tracking-[.08em] text-brand uppercase"
+              >Como funciona</span
+            >
+            <h2
+              class="mt-3 mb-4 text-section font-extrabold tracking-[-.035em]"
+              id="como-titulo"
+            >
+              Cada cadastro tem uma finalidade definida.
+            </h2>
           </div>
 
-          <div class="process-grid">
-            <article>
-              <span class="step-number">01</span>
-              <h3>Escolha seu perfil</h3>
-              <p>
+          <div class="grid gap-8 md:grid-cols-3">
+            <article class="border-t-2 border-line pt-6">
+              <span class="text-sm font-extrabold text-brand">01</span>
+              <h3 class="mt-4 mb-3 text-2xl font-extrabold">
+                Escolha seu perfil
+              </h3>
+              <p class="text-ink-muted">
                 Cadastre-se como doador ou registre uma necessidade de apoio.
               </p>
             </article>
-            <article>
-              <span class="step-number">02</span>
-              <h3>Informe somente o necessário</h3>
-              <p>Os campos ajudam a organizar o contato e a triagem da rede.</p>
+            <article class="border-t-2 border-line pt-6">
+              <span class="text-sm font-extrabold text-brand">02</span>
+              <h3 class="mt-4 mb-3 text-2xl font-extrabold">
+                Informe somente o necessário
+              </h3>
+              <p class="text-ink-muted">
+                Os campos ajudam a organizar o contato e a triagem da rede.
+              </p>
             </article>
-            <article>
-              <span class="step-number">03</span>
-              <h3>Aguarde o encaminhamento</h3>
-              <p>
+            <article class="border-t-2 border-line pt-6">
+              <span class="text-sm font-extrabold text-brand">03</span>
+              <h3 class="mt-4 mb-3 text-2xl font-extrabold">
+                Aguarde o encaminhamento
+              </h3>
+              <p class="text-ink-muted">
                 Os dados ficam reservados e não são publicados na landing page.
               </p>
             </article>
@@ -171,65 +294,105 @@
         </section>
 
         <section
-          class="privacy-section"
+          class="grid gap-8 rounded-xl bg-dark px-4 py-8 text-surface sm:px-8 sm:py-12 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,.8fr)] lg:gap-12 lg:px-16 lg:py-16"
           id="privacidade"
           aria-labelledby="privacidade-titulo"
         >
-          <div class="section-heading">
-            <span class="eyebrow eyebrow-on-dark"
+          <div class="max-w-184">
+            <span
+              class="text-sm font-extrabold tracking-[.08em] text-on-dark-muted uppercase"
               >Privacidade desde o cadastro</span
             >
-            <h2 id="privacidade-titulo">Seus dados não são uma vitrine.</h2>
-            <p>
+            <h2
+              class="mt-3 mb-4 text-section font-extrabold tracking-[-.035em]"
+              id="privacidade-titulo"
+            >
+              Seus dados não são uma vitrine.
+            </h2>
+            <p class="text-lg text-on-dark-muted">
               As informações fornecidas ajudam a organizar a participação na
               rede. Esta página não apresenta uma listagem dos cadastros.
             </p>
           </div>
-          <ul class="privacy-points">
-            <li>
+          <ul class="grid list-none gap-4 p-0">
+            <li class="border-b border-white/20 py-4">
               <strong>Finalidade:</strong> contato, triagem e encaminhamento.
             </li>
-            <li>
+            <li class="border-b border-white/20 py-4">
               <strong>Nesta página:</strong> não há listagem de cadastros.
             </li>
-            <li>
+            <li class="border-b border-white/20 py-4">
+              <strong>Consentimento:</strong> a autorização e o momento do envio
+              são registrados.
+            </li>
+            <li class="border-b border-white/20 py-4">
               <strong>Seus direitos:</strong> solicitar correção ou exclusão.
             </li>
           </ul>
         </section>
 
-        <section class="content-section" id="faq" aria-labelledby="faq-titulo">
-          <div class="section-heading">
-            <span class="eyebrow">Perguntas frequentes</span>
-            <h2 id="faq-titulo">Antes de participar, tire suas dúvidas.</h2>
+        <section
+          class="grid gap-8 px-4 py-8 sm:px-8 sm:py-12 lg:gap-12 lg:px-16 lg:py-16"
+          id="faq"
+          aria-labelledby="faq-titulo"
+        >
+          <div class="max-w-184">
+            <span
+              class="text-sm font-extrabold tracking-[.08em] text-brand uppercase"
+              >Perguntas frequentes</span
+            >
+            <h2
+              class="mt-3 mb-4 text-section font-extrabold tracking-[-.035em]"
+              id="faq-titulo"
+            >
+              Antes de participar, tire suas dúvidas.
+            </h2>
           </div>
 
-          <div class="faq-list">
-            <details>
-              <summary>Quem pode se cadastrar como doador?</summary>
-              <p>
+          <div class="grid gap-3">
+            <details class="border-b border-line">
+              <summary
+                class="min-h-14 cursor-pointer py-4 pr-10 font-extrabold marker:text-brand"
+              >
+                Quem pode se cadastrar como doador?
+              </summary>
+              <p class="mb-6 max-w-3xl text-ink-muted">
                 Qualquer pessoa disposta a contribuir pode informar como deseja
                 ajudar.
               </p>
             </details>
-            <details>
-              <summary>Quem pode registrar uma necessidade?</summary>
-              <p>
+            <details class="border-b border-line">
+              <summary
+                class="min-h-14 cursor-pointer py-4 pr-10 font-extrabold marker:text-brand"
+              >
+                Quem pode registrar uma necessidade?
+              </summary>
+              <p class="mb-6 max-w-3xl text-ink-muted">
                 Pessoas ou famílias que precisam de apoio podem enviar seus
                 dados para triagem.
               </p>
             </details>
-            <details>
-              <summary>Meus dados aparecem para outras pessoas?</summary>
-              <p>
-                Esta página não apresenta a listagem dos cadastros enviados.
+            <details class="border-b border-line">
+              <summary
+                class="min-h-14 cursor-pointer py-4 pr-10 font-extrabold marker:text-brand"
+              >
+                Meus dados aparecem para outras pessoas?
+              </summary>
+              <p class="mb-6 max-w-3xl text-ink-muted">
+                Os cadastros não são exibidos nesta página nem por endpoints
+                públicos de consulta.
               </p>
             </details>
-            <details>
-              <summary>Como posso corrigir ou excluir meu cadastro?</summary>
-              <p>
+            <details class="border-b border-line">
+              <summary
+                class="min-h-14 cursor-pointer py-4 pr-10 font-extrabold marker:text-brand"
+              >
+                Como posso corrigir ou excluir meu cadastro?
+              </summary>
+              <p class="mb-6 max-w-3xl text-ink-muted">
                 Use o
                 <a
+                  class="font-bold text-brand"
                   href="https://github.com/FNovitch/DoeJa/issues"
                   rel="noreferrer"
                   >canal de suporte do projeto</a
@@ -241,29 +404,47 @@
         </section>
 
         <section
-          class="registration-section"
+          class="rounded-xl bg-surface-muted px-4 py-8 sm:px-8 sm:py-12 lg:px-16 lg:py-16"
           id="cadastro"
           aria-labelledby="cadastro-titulo"
         >
-          <div class="section-heading">
-            <span class="eyebrow">Área de cadastro</span>
-            <h2 id="cadastro-titulo">Como você quer participar?</h2>
-            <p>
+          <div class="max-w-184">
+            <span
+              class="text-sm font-extrabold tracking-[.08em] text-brand uppercase"
+              >Área de cadastro</span
+            >
+            <h2
+              class="mt-3 mb-4 text-section font-extrabold tracking-[-.035em]"
+              id="cadastro-titulo"
+            >
+              Como você quer participar?
+            </h2>
+            <p class="text-lg text-ink-muted">
               Preencha o formulário correspondente. Campos marcados com
               <span aria-hidden="true">*</span> são obrigatórios.
             </p>
           </div>
 
-          <div class="forms-grid">
-            <article class="form-card">
-              <h3>Quero doar</h3>
-              <p>Informe como a rede pode entrar em contato com você.</p>
-              <form id="form-doador" novalidate>
-                <div class="field">
-                  <label for="doador-nome"
+          <div class="mt-8 grid gap-6 md:grid-cols-2">
+            <article
+              class="rounded-lg border border-line bg-surface p-5 shadow-soft sm:p-8"
+            >
+              <h3 class="mb-2 text-2xl font-extrabold">Quero doar</h3>
+              <p class="text-ink-muted">
+                Informe como a rede pode entrar em contato com você.
+              </p>
+              <form
+                class="mt-6 grid gap-4"
+                id="form-doador"
+                data-state="idle"
+                novalidate
+              >
+                <div class="grid gap-2">
+                  <label class="font-bold" for="doador-nome"
                     >Nome <span aria-hidden="true">*</span></label
                   >
                   <input
+                    class="min-h-13 w-full rounded-md border border-line bg-surface px-[.9rem] py-[.8rem] text-ink transition hover:border-ink-muted focus:border-focus focus:ring-3 focus:ring-focus/15 focus:outline-none aria-invalid:border-danger"
                     id="doador-nome"
                     name="nome"
                     type="text"
@@ -272,13 +453,18 @@
                     required
                     aria-describedby="doador-nome-erro"
                   />
-                  <span class="field-error" id="doador-nome-erro"></span>
+                  <span
+                    class="min-h-5 text-sm font-bold text-danger"
+                    data-field-error
+                    id="doador-nome-erro"
+                  ></span>
                 </div>
-                <div class="field">
-                  <label for="doador-email"
+                <div class="grid gap-2">
+                  <label class="font-bold" for="doador-email"
                     >E-mail <span aria-hidden="true">*</span></label
                   >
                   <input
+                    class="min-h-13 w-full rounded-md border border-line bg-surface px-[.9rem] py-[.8rem] text-ink transition hover:border-ink-muted focus:border-focus focus:ring-3 focus:ring-focus/15 focus:outline-none aria-invalid:border-danger"
                     id="doador-email"
                     name="email"
                     type="email"
@@ -287,11 +473,18 @@
                     required
                     aria-describedby="doador-email-erro"
                   />
-                  <span class="field-error" id="doador-email-erro"></span>
+                  <span
+                    class="min-h-5 text-sm font-bold text-danger"
+                    data-field-error
+                    id="doador-email-erro"
+                  ></span>
                 </div>
-                <div class="field">
-                  <label for="doador-telefone">Telefone</label>
+                <div class="grid gap-2">
+                  <label class="font-bold" for="doador-telefone"
+                    >Telefone</label
+                  >
                   <input
+                    class="min-h-13 w-full rounded-md border border-line bg-surface px-[.9rem] py-[.8rem] text-ink transition hover:border-ink-muted focus:border-focus focus:ring-3 focus:ring-focus/15 focus:outline-none aria-invalid:border-danger"
                     id="doador-telefone"
                     name="telefone"
                     type="tel"
@@ -300,11 +493,16 @@
                     maxlength="16"
                     aria-describedby="doador-telefone-erro"
                   />
-                  <span class="field-error" id="doador-telefone-erro"></span>
+                  <span
+                    class="min-h-5 text-sm font-bold text-danger"
+                    data-field-error
+                    id="doador-telefone-erro"
+                  ></span>
                 </div>
-                <div class="field">
-                  <label for="doador-cidade">Cidade</label>
+                <div class="grid gap-2">
+                  <label class="font-bold" for="doador-cidade">Cidade</label>
                   <input
+                    class="min-h-13 w-full rounded-md border border-line bg-surface px-[.9rem] py-[.8rem] text-ink transition hover:border-ink-muted focus:border-focus focus:ring-3 focus:ring-focus/15 focus:outline-none"
                     id="doador-cidade"
                     name="cidade"
                     type="text"
@@ -312,16 +510,23 @@
                     maxlength="100"
                   />
                 </div>
-                <div class="field">
-                  <label for="doador-observacoes">Como deseja ajudar?</label>
+                <div class="grid gap-2">
+                  <label class="font-bold" for="doador-observacoes"
+                    >Como deseja ajudar?</label
+                  >
                   <textarea
+                    class="min-h-28 w-full resize-y rounded-md border border-line bg-surface px-[.9rem] py-[.8rem] text-ink transition hover:border-ink-muted focus:border-focus focus:ring-3 focus:ring-focus/15 focus:outline-none"
                     id="doador-observacoes"
                     name="observacoes"
                     maxlength="500"
                   ></textarea>
                 </div>
-                <label class="consent" for="doador-consentimento">
+                <label
+                  class="grid cursor-pointer grid-cols-[1.25rem_1fr] items-start gap-3 text-sm leading-[1.55] font-bold text-ink-muted"
+                  for="doador-consentimento"
+                >
                   <input
+                    class="mt-[.15rem] size-5 accent-brand"
                     id="doador-consentimento"
                     name="consentimento"
                     type="checkbox"
@@ -334,9 +539,13 @@
                     <span aria-hidden="true">*</span></span
                   >
                 </label>
-                <span class="field-error" id="doador-consentimento-erro"></span>
+                <span
+                  class="min-h-5 text-sm font-bold text-danger"
+                  data-field-error
+                  id="doador-consentimento-erro"
+                ></span>
                 <button
-                  class="submit-button"
+                  class="min-h-[3.4rem] w-full cursor-pointer rounded-md bg-brand px-4 py-[.8rem] font-extrabold text-surface transition hover:-translate-y-px hover:bg-brand-hover disabled:cursor-wait disabled:opacity-70 motion-reduce:transform-none"
                   type="submit"
                   data-idle-label="Cadastrar como doador"
                   data-loading-label="Enviando…"
@@ -344,8 +553,9 @@
                   Cadastrar como doador
                 </button>
                 <div
-                  class="form-feedback"
+                  class="min-h-6 text-sm font-bold text-ink-muted outline-none data-[state=error]:text-danger data-[state=success]:text-success"
                   id="feedback-doador"
+                  data-state="idle"
                   role="status"
                   aria-live="polite"
                   tabindex="-1"
@@ -353,15 +563,25 @@
               </form>
             </article>
 
-            <article class="form-card">
-              <h3>Preciso de apoio</h3>
-              <p>Compartilhe somente o necessário para a triagem inicial.</p>
-              <form id="form-beneficiario" novalidate>
-                <div class="field">
-                  <label for="benef-nome"
+            <article
+              class="rounded-lg border border-line bg-surface p-5 shadow-soft sm:p-8"
+            >
+              <h3 class="mb-2 text-2xl font-extrabold">Preciso de apoio</h3>
+              <p class="text-ink-muted">
+                Compartilhe somente o necessário para a triagem inicial.
+              </p>
+              <form
+                class="mt-6 grid gap-4"
+                id="form-beneficiario"
+                data-state="idle"
+                novalidate
+              >
+                <div class="grid gap-2">
+                  <label class="font-bold" for="benef-nome"
                     >Nome <span aria-hidden="true">*</span></label
                   >
                   <input
+                    class="min-h-13 w-full rounded-md border border-line bg-surface px-[.9rem] py-[.8rem] text-ink transition hover:border-ink-muted focus:border-focus focus:ring-3 focus:ring-focus/15 focus:outline-none aria-invalid:border-danger"
                     id="benef-nome"
                     name="nome"
                     type="text"
@@ -370,13 +590,18 @@
                     required
                     aria-describedby="benef-nome-erro"
                   />
-                  <span class="field-error" id="benef-nome-erro"></span>
+                  <span
+                    class="min-h-5 text-sm font-bold text-danger"
+                    data-field-error
+                    id="benef-nome-erro"
+                  ></span>
                 </div>
-                <div class="field">
-                  <label for="benef-cpf"
+                <div class="grid gap-2">
+                  <label class="font-bold" for="benef-cpf"
                     >CPF <span aria-hidden="true">*</span></label
                   >
                   <input
+                    class="min-h-13 w-full rounded-md border border-line bg-surface px-[.9rem] py-[.8rem] text-ink transition hover:border-ink-muted focus:border-focus focus:ring-3 focus:ring-focus/15 focus:outline-none aria-invalid:border-danger"
                     id="benef-cpf"
                     name="cpf"
                     type="text"
@@ -386,15 +611,20 @@
                     required
                     aria-describedby="benef-cpf-ajuda benef-cpf-erro"
                   />
-                  <small class="field-help" id="benef-cpf-ajuda"
+                  <small class="text-sm text-ink-muted" id="benef-cpf-ajuda"
                     >Usado para evitar cadastros duplicados; não será exibido
                     publicamente.</small
                   >
-                  <span class="field-error" id="benef-cpf-erro"></span>
+                  <span
+                    class="min-h-5 text-sm font-bold text-danger"
+                    data-field-error
+                    id="benef-cpf-erro"
+                  ></span>
                 </div>
-                <div class="field">
-                  <label for="benef-telefone">Telefone</label>
+                <div class="grid gap-2">
+                  <label class="font-bold" for="benef-telefone">Telefone</label>
                   <input
+                    class="min-h-13 w-full rounded-md border border-line bg-surface px-[.9rem] py-[.8rem] text-ink transition hover:border-ink-muted focus:border-focus focus:ring-3 focus:ring-focus/15 focus:outline-none aria-invalid:border-danger"
                     id="benef-telefone"
                     name="telefone"
                     type="tel"
@@ -403,11 +633,16 @@
                     maxlength="16"
                     aria-describedby="benef-telefone-erro"
                   />
-                  <span class="field-error" id="benef-telefone-erro"></span>
+                  <span
+                    class="min-h-5 text-sm font-bold text-danger"
+                    data-field-error
+                    id="benef-telefone-erro"
+                  ></span>
                 </div>
-                <div class="field">
-                  <label for="benef-endereco">Endereço</label>
+                <div class="grid gap-2">
+                  <label class="font-bold" for="benef-endereco">Endereço</label>
                   <input
+                    class="min-h-13 w-full rounded-md border border-line bg-surface px-[.9rem] py-[.8rem] text-ink transition hover:border-ink-muted focus:border-focus focus:ring-3 focus:ring-focus/15 focus:outline-none"
                     id="benef-endereco"
                     name="endereco"
                     type="text"
@@ -415,9 +650,12 @@
                     maxlength="180"
                   />
                 </div>
-                <div class="field">
-                  <label for="benef-familia">Tamanho da família</label>
+                <div class="grid gap-2">
+                  <label class="font-bold" for="benef-familia"
+                    >Tamanho da família</label
+                  >
                   <input
+                    class="min-h-13 w-full rounded-md border border-line bg-surface px-[.9rem] py-[.8rem] text-ink transition hover:border-ink-muted focus:border-focus focus:ring-3 focus:ring-focus/15 focus:outline-none aria-invalid:border-danger"
                     id="benef-familia"
                     name="familia_tamanho"
                     type="number"
@@ -426,18 +664,29 @@
                     max="30"
                     aria-describedby="benef-familia-erro"
                   />
-                  <span class="field-error" id="benef-familia-erro"></span>
+                  <span
+                    class="min-h-5 text-sm font-bold text-danger"
+                    data-field-error
+                    id="benef-familia-erro"
+                  ></span>
                 </div>
-                <div class="field">
-                  <label for="benef-necessidade">Necessidade</label>
+                <div class="grid gap-2">
+                  <label class="font-bold" for="benef-necessidade"
+                    >Necessidade</label
+                  >
                   <textarea
+                    class="min-h-28 w-full resize-y rounded-md border border-line bg-surface px-[.9rem] py-[.8rem] text-ink transition hover:border-ink-muted focus:border-focus focus:ring-3 focus:ring-focus/15 focus:outline-none"
                     id="benef-necessidade"
                     name="necessidade"
                     maxlength="500"
                   ></textarea>
                 </div>
-                <label class="consent" for="benef-consentimento">
+                <label
+                  class="grid cursor-pointer grid-cols-[1.25rem_1fr] items-start gap-3 text-sm leading-[1.55] font-bold text-ink-muted"
+                  for="benef-consentimento"
+                >
                   <input
+                    class="mt-[.15rem] size-5 accent-brand"
                     id="benef-consentimento"
                     name="consentimento"
                     type="checkbox"
@@ -450,9 +699,13 @@
                     <span aria-hidden="true">*</span></span
                   >
                 </label>
-                <span class="field-error" id="benef-consentimento-erro"></span>
+                <span
+                  class="min-h-5 text-sm font-bold text-danger"
+                  data-field-error
+                  id="benef-consentimento-erro"
+                ></span>
                 <button
-                  class="submit-button"
+                  class="min-h-[3.4rem] w-full cursor-pointer rounded-md bg-brand px-4 py-[.8rem] font-extrabold text-surface transition hover:-translate-y-px hover:bg-brand-hover disabled:cursor-wait disabled:opacity-70 motion-reduce:transform-none"
                   type="submit"
                   data-idle-label="Cadastrar pedido de apoio"
                   data-loading-label="Enviando…"
@@ -460,8 +713,9 @@
                   Cadastrar pedido de apoio
                 </button>
                 <div
-                  class="form-feedback"
+                  class="min-h-6 text-sm font-bold text-ink-muted outline-none data-[state=error]:text-danger data-[state=success]:text-success"
                   id="feedback-beneficiario"
+                  data-state="idle"
                   role="status"
                   aria-live="polite"
                   tabindex="-1"
@@ -472,18 +726,29 @@
         </section>
       </main>
 
-      <footer class="site-footer">
+      <footer
+        class="mt-12 grid items-center gap-4 border-t border-line px-4 pt-8 md:grid-cols-[auto_minmax(0,42rem)] md:gap-8"
+      >
         <a
-          class="brand footer-brand"
+          class="inline-flex items-center gap-3 font-extrabold text-ink no-underline"
           href="#inicio"
           aria-label="Voltar ao início"
         >
-          <img src="assets/doeja-logo.svg" width="36" height="36" alt="" />
+          <img
+            class="size-9 rounded-md"
+            src="assets/doeja-logo.svg"
+            width="36"
+            height="36"
+            alt=""
+          />
           <span>DoeJa</span>
         </a>
-        <p>
+        <p class="text-sm text-ink-muted">
           Projeto demonstrativo. Para correção ou exclusão de cadastro, use o
-          <a href="https://github.com/FNovitch/DoeJa/issues" rel="noreferrer"
+          <a
+            class="font-bold text-brand"
+            href="https://github.com/FNovitch/DoeJa/issues"
+            rel="noreferrer"
             >canal de suporte</a
           >
           sem incluir dados pessoais na mensagem pública.

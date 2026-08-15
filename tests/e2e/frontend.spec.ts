@@ -7,8 +7,28 @@ test.beforeEach(async ({ page }) => {
 
 test("apresenta as duas jornadas sem renderizar listagens", async ({
   page,
-}) => {
-  const journeys = page.locator(".impact-grid");
+}, testInfo) => {
+  for (const width of [390, 768, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/");
+    const hasHorizontalOverflow = await page.evaluate(
+      () =>
+        document.documentElement.scrollWidth >
+        document.documentElement.clientWidth + 1,
+    );
+    expect(hasHorizontalOverflow, `overflow horizontal em ${width}px`).toBe(
+      false,
+    );
+
+    if (testInfo.project.name === "desktop") {
+      await page.screenshot({
+        path: testInfo.outputPath(`layout-${width}.png`),
+        fullPage: true,
+      });
+    }
+  }
+
+  const journeys = page.locator("[data-journeys]");
   await expect(journeys.getByText("Quero doar", { exact: true })).toBeVisible();
   await expect(
     journeys.getByText("Preciso de apoio", { exact: true }),
@@ -54,6 +74,11 @@ test("formulário valida campos, impede duplicidade e anuncia sucesso", async ({
   });
   await page.route("**/api/doadores", async (route) => {
     await responseGate;
+    expect(route.request().postDataJSON()).toMatchObject({
+      nome: "Ana Souza",
+      email: "ana@example.com",
+      consentimento: true,
+    });
     await route.fulfill({
       status: 201,
       contentType: "application/json",

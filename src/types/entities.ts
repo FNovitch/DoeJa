@@ -5,6 +5,8 @@ export interface Doador {
   telefone: string | null;
   cidade: string | null;
   observacoes: string | null;
+  consentimento: boolean;
+  consentido_em: string | null;
 }
 
 export interface CriarDoadorDTO {
@@ -13,6 +15,7 @@ export interface CriarDoadorDTO {
   telefone?: string | null;
   cidade?: string | null;
   observacoes?: string | null;
+  consentimento: boolean;
 }
 
 export interface Beneficiario {
@@ -23,6 +26,8 @@ export interface Beneficiario {
   endereco: string | null;
   familia_tamanho: number | null;
   necessidade: string | null;
+  consentimento: boolean;
+  consentido_em: string | null;
 }
 
 export interface CriarBeneficiarioDTO {
@@ -32,8 +37,5 @@ export interface CriarBeneficiarioDTO {
   endereco?: string | null;
   familia_tamanho?: number | string | null;
   necessidade?: string | null;
-}
-
-export interface NomeQuery {
-  nome?: string;
+  consentimento: boolean;
 }

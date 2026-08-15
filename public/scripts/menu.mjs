@@ -4,15 +4,14 @@ import { getElement } from "./dom.mjs";
 
 export function setupMenu() {
   const toggle = /** @type {HTMLButtonElement} */ (getElement("#menu-toggle"));
-  const menu = getElement("#menu");
+  const menu = /** @type {HTMLElement} */ (getElement("#menu"));
 
   /** @param {boolean} open @param {boolean} [returnFocus] */
   const setOpen = (open, returnFocus = false) => {
-    menu.classList.toggle("is-open", open);
-    toggle.classList.toggle("is-active", open);
+    menu.dataset.open = String(open);
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
-    document.body.classList.toggle("menu-open", open);
+    document.body.dataset.menuOpen = String(open);
     if (returnFocus) toggle.focus();
   };
 
@@ -44,7 +43,8 @@ export function setupMenu() {
     }
   });
 
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 820) setOpen(false);
+  const desktopViewport = window.matchMedia("(min-width: 48rem)");
+  desktopViewport.addEventListener("change", (event) => {
+    if (event.matches) setOpen(false);
   });
 }

@@ -1,0 +1,84 @@
+@import "tailwindcss" source("../public");
+
+@theme {
+  --color-canvas: #fff9f3;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f9eee7;
+  --color-ink: #2b211b;
+  --color-ink-muted: #66574d;
+  --color-line: #dccdc3;
+  --color-brand: #a84220;
+  --color-brand-hover: #873519;
+  --color-brand-soft: #fce8dd;
+  --color-success: #1f6b46;
+  --color-danger: #a62b2b;
+  --color-focus: #165dff;
+  --color-dark: #30231d;
+
+  --font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --text-display: clamp(2.7rem, 6vw, 5rem);
+  --text-section: clamp(2rem, 4vw, 3rem);
+  --text-panel: clamp(1.6rem, 3vw, 2.25rem);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  --shadow-soft: 0 4px 12px rgb(70 45 30 / 8%);
+  --shadow-elevated: 0 16px 36px rgb(70 45 30 / 12%);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+  }
+
+  body {
+    color: var(--color-ink);
+    background: var(--color-canvas);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  button,
+  a,
+  input,
+  textarea,
+  summary {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

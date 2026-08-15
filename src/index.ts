@@ -1,33 +1,16 @@
-import cors from "cors";
-import express, { type Request, type Response } from "express";
-import path from "path";
-import beneficiariosRoutes from "./routes/beneficiarios";
-import doadoresRoutes from "./routes/doadores";
+import type { Server } from "http";
+import app from "./app";
+import db from "./db/database";
 import { initializeDatabase } from "./migrations/init";
 
-const app = express();
 const PORT = process.env.PORT ?? 3000;
-const publicPath = path.join(process.cwd(), "public");
-
-app.use(cors());
-app.use(express.json());
-app.use(express.static(publicPath));
-
-app.use("/api/doadores", doadoresRoutes);
-app.use("/api/beneficiarios", beneficiariosRoutes);
-
-app.get("/api/status", (_req: Request, res: Response) => {
-  res.json({ ok: true });
-});
-
-app.use((_req: Request, res: Response) => {
-  res.sendFile(path.join(publicPath, "index.html"));
-});
+let server: Server | undefined;
+let isShuttingDown = false;
 
 async function startServer(): Promise<void> {
   try {
     await initializeDatabase();
-    app.listen(PORT, () => {
+    server = app.listen(PORT, () => {
       console.log(`Servidor rodando em http://localhost:${PORT}`);
     });
   } catch (error) {
@@ -36,6 +19,28 @@ async function startServer(): Promise<void> {
     process.exit(1);
   }
 }
+
+async function shutdown(signal: NodeJS.Signals): Promise<void> {
+  if (isShuttingDown) return;
+  isShuttingDown = true;
+
+  try {
+    if (server) {
+      await new Promise<void>((resolve, reject) => {
+        server?.close((error) => (error ? reject(error) : resolve()));
+      });
+    }
+    await db.close();
+    console.log(`Servidor encerrado por ${signal}.`);
+    process.exit(0);
+  } catch (error) {
+    console.error("Erro ao encerrar o servidor:", error);
+    process.exit(1);
+  }
+}
+
+process.once("SIGINT", () => void shutdown("SIGINT"));
+process.once("SIGTERM", () => void shutdown("SIGTERM"));
 
 void startServer();
 

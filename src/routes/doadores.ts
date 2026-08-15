@@ -1,25 +1,12 @@
 import { Router, type Request, type Response } from "express";
 import * as doadores from "../models/doadores";
-import type { CriarDoadorDTO, NomeQuery } from "../types/entities";
+import type { CriarDoadorDTO } from "../types/entities";
 
 const router = Router();
 
-router.get(
-  "/",
-  async (
-    req: Request<Record<string, never>, unknown, unknown, NomeQuery>,
-    res: Response,
-  ): Promise<void> => {
-    try {
-      const nome = req.query.nome ?? "";
-      const lista = await doadores.getAll(nome);
-      res.json(lista);
-    } catch (error) {
-      console.error("Erro ao buscar doadores:", error);
-      res.status(500).json({ error: "Erro ao buscar doadores." });
-    }
-  },
-);
+router.get("/", (_req: Request, res: Response): void => {
+  res.status(405).json({ error: "Consulta pública não disponível." });
+});
 
 router.post(
   "/",
@@ -27,10 +14,16 @@ router.post(
     req: Request<Record<string, never>, unknown, CriarDoadorDTO>,
     res: Response,
   ): Promise<void> => {
-    const { nome, email, telefone, cidade, observacoes } = req.body;
+    const { nome, email, telefone, cidade, observacoes, consentimento } =
+      req.body;
 
     if (!nome || !email) {
       res.status(400).json({ error: "Nome e email sao obrigatorios." });
+      return;
+    }
+
+    if (consentimento !== true) {
+      res.status(400).json({ error: "O consentimento é obrigatório." });
       return;
     }
 
@@ -41,6 +34,7 @@ router.post(
         telefone,
         cidade,
         observacoes,
+        consentimento,
       });
 
       res.status(201).json(novoDoador);
